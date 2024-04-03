@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <title>Aretex PDF Toolkit</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="../ICONS/css/fontawesome.css" rel="stylesheet" />
+    <link href="../ICONS/css/brands.css" rel="stylesheet" />
+    <link href="../ICONS/css/solid.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="nav">
+        <a href="" class="icons"><i class="fa-solid fa-house"></i></a>
+        <a href="" class="icons"><i class="fa-solid fa-gear"></i></a>
+        <a href="" class="icons"><i class="fa-solid fa-screwdriver-wrench"></i></a>
+        <a href="" class="icons">
+            <div class="arrow-group">
+                <i class="fa-solid fa-arrow-up"></i>
+                <i class="fa-solid fa-arrow-down arrow"></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="boxes boxes-merge"  onclick="toggleSize(this)">
+        <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
+        <img src="../IMAGES/mergeicon.png" alt="mereg" class="mergeimage">
+        <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
+        <br>
+        <h2 class="lbltitle">
+            Merge PDF
+        </h2>
+        <h3></h3>
+        <label class="lbldesc">
+            Merge PDF's with a single<br>
+            click in a few seconds.
+            <br>
+            <br>
+            <br>
+            <br>
+                <i class="fa-solid fa-arrow-right next"></i>
+        </label>
+        <button id="btnmerge" style="display: none;" class="btnselect" onclick="">Select PDF File</button>
+    </div>
+
+    <div class="boxes boxes-split"  onclick="toggleSize(this)">
+        <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
+        <img src="../IMAGES/spliticon.png" alt="mereg" class="mergeimage">
+        <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
+        <br>
+        <h2 class="lbltitle">
+            Split PDF
+        </h2>
+        <label class="lbldesc">
+            Split or separate whole PDF<br>
+            to its individual pages. 
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="" class="anext">
+                <i class="fa-solid fa-arrow-right next"></i>
+            </a>
+        </label>
+    </div>
+
+    <div class="boxes boxes-img"  onclick="toggleSize(this)">
+        <img src="../IMAGES/imgicon.png" alt="pdf" class="pdfimage">
+        <img src="../IMAGES/converticon.png" alt="mereg" class="mergeimage">
+        <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
+        <br>
+        <h2 class="lbltitle">
+            IMAGE to PDF
+        </h2>
+        <label class="lbldesc">
+            Convert your images into<br>
+            a PDF file in seconds. 
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="" class="anext">
+                <i class="fa-solid fa-arrow-right next"></i>
+            </a>
+        </label>
+    </div>
+
+    <div class="boxes boxes-docs"  onclick="toggleSize(this)">
+        <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
+        <img src="../IMAGES/converticon.png" alt="mereg" class="mergeimage">
+        <img src="../IMAGES/docxicon.png" alt="pdf" class="pdfimage">
+        <br>
+        <h2 class="lbltitle">
+            PDF to WORD
+        </h2>
+        <label class="lbldesc">
+            Easily convert your PDF file<br>
+            into word documents.
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="" class="anext">
+                <i class="fa-solid fa-arrow-right next"></i>
+            </a>
+        </label>
+    </div>
+
+    <div class="boxes boxes-excel"  onclick="toggleSize(this)">
+        <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
+        <img src="../IMAGES/converticon.png" alt="mereg" class="mergeimage">
+        <img src="../IMAGES/excelicon.png" alt="pdf" class="pdfimage">
+        <br>
+        <h2 class="lbltitle">
+            PDF to EXCEL
+        </h2>
+        <label class="lbldesc">
+            Extract data directly from PDF file<br>
+            into Excel Spreadsheets.
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="" class="anext">
+                <i class="fa-solid fa-arrow-right next"></i>
+            </a>
+        </label>
+    </div>
+
+    <script>
+        function toggleSize(element) {
+            var btnmerge = element.querySelector('#btnmerge');
+            var arrow = element.querySelector('.next');
+            var bsplit = document.querySelector('.boxes-split');
+            var bdocx = document.querySelector('.boxes-docs');
+            var bexcel = document.querySelector('.boxes-excel');
+            var bmerge = document.querySelector('.boxes-merge');
+            var bimg = document.querySelector('.boxes-img');
+
+            if (element.classList.contains("enlarged")) {
+                element.classList.remove("enlarged");
+                element.classList.add("shrunken");
+                if(element.classList.contains('boxes-merge')){
+                    bsplit.classList.remove('move');
+                    btnmerge.style.display = 'none';
+                    arrow.style.display = 'block';
+                }
+                if(element.classList.contains('boxes-img')){
+                    bdocx.classList.remove('move');
+                    bexcel.classList.remove('move');
+                }
+                if(element.classList.contains('boxes-docs')){
+                    bexcel.classList.remove('move');
+                }
+            } else {
+                element.classList.remove("shrunken");
+                element.classList.add("enlarged");
+                if(element.classList.contains('boxes-merge')){
+                    bsplit.classList.add('move');
+                    btnmerge.style.display = 'block';
+                    arrow.style.display = 'none';
+                }
+                if(element.classList.contains('boxes-img')){
+                    bdocx.classList.add('move');
+                    bexcel.classList.add('move');
+                }
+                if(element.classList.contains('boxes-docs')){
+                    bexcel.classList.add('move');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

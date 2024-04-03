@@ -1,0 +1,14 @@
+{
+  "name": "pdf-toolkit-design",
+  "version": "1.0.0",
+  "description": "This is the design of the PDF-Toolkit",
+  "main": "./MainWindow/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Gerome Blanco",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^29.1.6"
+  }
+}

@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #D4D4D4;
+}
+
+.body {
+    overflow-y: hidden;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 14px;
+    gap: 50px;
+    
+    position: absolute;
+    width: 60px;
+    height: 100vh;
+    max-height: 100%;
+    left: 0px;
+    top: 0px;
+    
+    background: #32449C;
+}
+
+.icons {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.nav .icons i {
+    color: white;
+    background-color: transparent;
+    font-size: 30px;
+}
+
+.nav .icons i:hover {
+    color: #EF8B16;
+    transition: ease .8s;
+}
+
+.nav .icons .arrow {
+    margin-left: 10px;
+    margin-top: -10px;
+}
+
+.nav .icons .arrow-group {
+    background-color: transparent;
+}
+
+.nav .icons .arrow-group i {
+    color: white;
+    background-color: transparent;
+    font-size: 30px;
+}
+
+.nav .icons .arrow-group:hover i {
+    color: #EF8B16;
+    transition: ease .8s;
+}
+
+.boxes {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px 8px;
+    margin-top: 80px;
+    margin-left: 100px;
+    width: 250px;
+    height: 250px;
+    background: #F9F9F9;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    transition: width 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes enlargedd-in {
+    from { width: 250px; }
+    25% { width: 200px; }
+    to { width: 482px; }
+}
+
+@keyframes enlargedd-out {
+    from { width: 482px; }
+    25% { width: 520px; }
+    to { width: 250px;}
+}
+
+.boxes-split.move {
+    margin-left: 40rem;
+}
+
+.boxes-docs.move {
+    margin-left: 40rem;
+}
+
+.boxes-excel.move {
+    margin-left: 60rem;
+}
+
+.boxes-excel.movemore {
+    margin-left: 80rem;
+}
+
+.boxes.enlarged {
+    animation: enlargedd-in 0.6s ease forwards;
+    border-color: #EF8B16;
+    border-style: solid;
+    order: 2;
+}
+
+.boxes.shrunken {
+    animation: enlargedd-out 0.6s ease forwards;
+}
+
+.boxes:hover {
+    background: #E9E9E9;
+    transition: ease .5s;
+}
+
+.boxes-split {
+    margin-left: 24rem;
+    margin-top: -15.6rem;
+    transition: margin-left 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.boxes-img {
+    margin-top: 2.5rem;
+    transition: margin-left 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.boxes-docs {
+    margin-left: 24rem;
+    margin-top: -15.6rem;
+    transition: margin-left 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.boxes-excel {
+    margin-left: 41.8rem;
+    margin-top: -15.6rem;
+    transition: margin-left 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.pdfimage {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    margin-top: 30px;
+    margin-left: 15px;
+}
+
+.mergeimage {
+    width: 30px;
+    height: 30px;
+    margin-top: 35px;
+    margin-left: 10px;
+    margin-right: -9px;
+    background-color: transparent;
+}
+
+.lbltitle {
+    background-color: transparent;
+    margin-top: 90px;
+    margin-left: -120px;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    color: #383838;
+    width: 100vh;
+}
+
+.lbldesc {
+    background-color: transparent;
+    margin-top: 140px;
+    margin-left: -210px;
+    font-size: 12px;
+    font-family: "Inter", sans-serif;
+    color: #555555;
+    width: 100vh;
+}
+
+.anext {
+    background-color: transparent;
+}
+
+.next {
+    background-color: transparent;
+    font-size: 20px;
+    color: black;
+    margin-left: 170px;
+}
+
+.btnselect {
+    background-color: #EA2929;
+    width: 500px;
+    height: 32px;
+    margin-top: 90px;
+    margin-right: 20px;
+    border-style: solid;
+    border-color: #EA2929;
+    border-radius: 20px;
+    padding: 8px 24px;
+    gap: 10px;
+    color: white;
+    animation: fadeIn 3s ease forwards;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; 
+    }
+    to {
+        opacity: 1;
+    }
+}
