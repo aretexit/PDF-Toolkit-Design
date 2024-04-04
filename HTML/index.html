@@ -9,6 +9,21 @@
     <link href="../ICONS/css/fontawesome.css" rel="stylesheet" />
     <link href="../ICONS/css/brands.css" rel="stylesheet" />
     <link href="../ICONS/css/solid.css" rel="stylesheet" />
+    <style>
+        .selected-file {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .selected-file-name {
+            flex: 1;
+        }
+
+        .remove-file-btn {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,12 +38,13 @@
             </div>
         </a>
     </div>
-
+    <div class="box-row1">
     <div class="boxes boxes-merge"  onclick="toggleSize(this)">
         <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
         <img src="../IMAGES/mergeicon.png" alt="mereg" class="mergeimage">
         <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
         <br>
+        <div class="text-container"> 
         <h2 class="lbltitle">
             Merge PDF
         </h2>
@@ -38,11 +54,21 @@
             click in a few seconds.
             <br>
             <br>
+            <label class="lbladd" style="display: none; background-color: transparent;">
+                Select multiple PDF files<br>
+                and merge into one.
+            </label>
             <br>
             <br>
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
-        <button id="btnmerge" style="display: none;" class="btnselect" onclick="">Select PDF File</button>
+        </div>
+        <button id="file-select-btn" class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select PDF files</button>
+        <input type="file" id="file-input" style="display: none;" accept=".pdf" multiple required>
+        <div id="selected-file-info" style="display: none;">
+            <span id="selected-file-name"></span>
+            <button id="remove-file-btn" onclick="removeSelectedFile()">Remove</button>
+        </div>
     </div>
 
     <div class="boxes boxes-split"  onclick="toggleSize(this)">
@@ -50,6 +76,7 @@
         <img src="../IMAGES/spliticon.png" alt="mereg" class="mergeimage">
         <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
         <br>
+        <div class="text-container">
         <h2 class="lbltitle">
             Split PDF
         </h2>
@@ -58,19 +85,27 @@
             to its individual pages. 
             <br>
             <br>
+            <label class="lbladd" style="display: none; background-color: transparent;">
+                Select one PDF file<br>
+                to be split into pages.
+            </label>
             <br>
             <br>
-            <a href="" class="anext">
                 <i class="fa-solid fa-arrow-right next"></i>
-            </a>
         </label>
+        </div>
+        <button class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select PDF file</button>
     </div>
+    </div>
+
+    <div class="box-row2">
 
     <div class="boxes boxes-img"  onclick="toggleSize(this)">
         <img src="../IMAGES/imgicon.png" alt="pdf" class="pdfimage">
         <img src="../IMAGES/converticon.png" alt="mereg" class="mergeimage">
         <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
         <br>
+        <div class="text-container">
         <h2 class="lbltitle">
             IMAGE to PDF
         </h2>
@@ -79,12 +114,16 @@
             a PDF file in seconds. 
             <br>
             <br>
+            <label class="lbladd" style="display: none; background-color: transparent;">
+                Images may NOT be<br>
+                converted into text.
+            </label>
             <br>
             <br>
-            <a href="" class="anext">
                 <i class="fa-solid fa-arrow-right next"></i>
-            </a>
         </label>
+        </div>
+        <button class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select Image file</button>
     </div>
 
     <div class="boxes boxes-docs"  onclick="toggleSize(this)">
@@ -92,20 +131,24 @@
         <img src="../IMAGES/converticon.png" alt="mereg" class="mergeimage">
         <img src="../IMAGES/docxicon.png" alt="pdf" class="pdfimage">
         <br>
+        <div class="text-container">
         <h2 class="lbltitle">
             PDF to WORD
         </h2>
         <label class="lbldesc">
             Easily convert your PDF file<br>
             into word documents.
+            <br><br>
+            <label class="lbladd" style="display: none; background-color: transparent;">
+                Scanned PDF may NOT<br>
+                work properly.
+            </label>
             <br>
             <br>
-            <br>
-            <br>
-            <a href="" class="anext">
                 <i class="fa-solid fa-arrow-right next"></i>
-            </a>
         </label>
+        </div>
+        <button class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select PDF file</button>
     </div>
 
     <div class="boxes boxes-excel"  onclick="toggleSize(this)">
@@ -113,63 +156,96 @@
         <img src="../IMAGES/converticon.png" alt="mereg" class="mergeimage">
         <img src="../IMAGES/excelicon.png" alt="pdf" class="pdfimage">
         <br>
+        <div class="text-container">
         <h2 class="lbltitle">
             PDF to EXCEL
         </h2>
         <label class="lbldesc">
-            Extract data directly from PDF file<br>
-            into Excel Spreadsheets.
+            Extract data directly<br>
+            from PDF file into<br>
+            Excel Spreadsheets.<br><br>
+            <label class="lbladd" style="display: none; background-color: transparent;">
+                Scanned PDF may NOT<br>
+                work properly.
+            </label>
             <br>
-            <br>
-            <br>
-            <br>
-            <a href="" class="anext">
                 <i class="fa-solid fa-arrow-right next"></i>
-            </a>
         </label>
+        </div>
+        <button class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select PDF file</button>
+    </div>
     </div>
 
     <script>
         function toggleSize(element) {
-            var btnmerge = element.querySelector('#btnmerge');
             var arrow = element.querySelector('.next');
-            var bsplit = document.querySelector('.boxes-split');
-            var bdocx = document.querySelector('.boxes-docs');
-            var bexcel = document.querySelector('.boxes-excel');
-            var bmerge = document.querySelector('.boxes-merge');
-            var bimg = document.querySelector('.boxes-img');
-
+            var lbldesc = element.querySelector('.lbldesc');
+            var lbladd = element.querySelector('.lbladd');
+            var btnselect = element.querySelector('.btnselect');
+    
             if (element.classList.contains("enlarged")) {
                 element.classList.remove("enlarged");
+                arrow.classList.add('fadein')
+                arrow.style.display = 'block';
                 element.classList.add("shrunken");
-                if(element.classList.contains('boxes-merge')){
-                    bsplit.classList.remove('move');
-                    btnmerge.style.display = 'none';
-                    arrow.style.display = 'block';
-                }
-                if(element.classList.contains('boxes-img')){
-                    bdocx.classList.remove('move');
-                    bexcel.classList.remove('move');
-                }
-                if(element.classList.contains('boxes-docs')){
-                    bexcel.classList.remove('move');
-                }
+                btnselect.classList.remove('fadein');
+                lbldesc.classList.remove("fadein");
+                lbladd.classList.remove("fadein")
+                btnselect.style.display = 'none';
+                lbladd.style.display = 'none';
+                lbldesc.classList.add('fadeout');
             } else {
                 element.classList.remove("shrunken");
                 element.classList.add("enlarged");
-                if(element.classList.contains('boxes-merge')){
-                    bsplit.classList.add('move');
-                    btnmerge.style.display = 'block';
-                    arrow.style.display = 'none';
-                }
-                if(element.classList.contains('boxes-img')){
-                    bdocx.classList.add('move');
-                    bexcel.classList.add('move');
-                }
-                if(element.classList.contains('boxes-docs')){
-                    bexcel.classList.add('move');
-                }
+                arrow.classList.add('fadeout');
+                arrow.style.display = 'none';
+                lbldesc.classList.add("fadein");
+                lbladd.classList.add("fadein")
+                btnselect.classList.add('fadein');
+                btnselect.style.display = 'block';
+                lbladd.style.display = 'block';
+                lbldesc.classList.remove('fadeout');
             }
+        }
+    
+        function stopPropagation(event) {
+            event.stopPropagation();
+        }
+    
+        document.getElementById("file-select-btn").addEventListener("click", function(event) {
+            event.stopPropagation();
+            document.getElementById("file-input").click();
+        });
+    
+        document.getElementById("file-input").addEventListener("change", function(event) {
+            event.stopPropagation();
+            displaySelectedFiles(event.target.files);
+        });
+    
+        function displaySelectedFiles(files) {
+            var selectedFileContainer = document.getElementById("selected-file-info");
+            selectedFileContainer.innerHTML = "";
+            for (var i = 0; i < files.length; i++) {
+                var fileEntry = document.createElement('div');
+                fileEntry.classList.add('selected-file');
+                var fileName = document.createElement('span');
+                fileName.classList.add('selected-file-name');
+                fileName.textContent = files[i].name;
+                var removeBtn = document.createElement('button');
+                removeBtn.classList.add('remove-file-btn');
+                removeBtn.textContent = 'Remove';
+                removeBtn.addEventListener('click', function() {
+                    removeFileEntry(fileEntry);
+                });
+                fileEntry.appendChild(fileName);
+                fileEntry.appendChild(removeBtn);
+                selectedFileContainer.appendChild(fileEntry);
+            }
+            selectedFileContainer.style.display = "block";
+        }
+    
+        function removeFileEntry(fileEntry) {
+            fileEntry.remove();
         }
     </script>
 </body>
