@@ -63,11 +63,9 @@
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
         </div>
-        <button id="file-select-btn" class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select PDF files</button>
+        <button id="file-select-btn" class="btnselect" style="display: none;">Select PDF files</button>
         <input type="file" id="file-input" style="display: none;" accept=".pdf" multiple required>
         <div id="selected-file-info" style="display: none;">
-            <span id="selected-file-name"></span>
-            <button id="remove-file-btn" onclick="removeSelectedFile()">Remove</button>
         </div>
     </div>
 
@@ -94,7 +92,10 @@
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
         </div>
-        <button class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select PDF file</button>
+        <button id="file-select-btn" class="btnselect" style="display: none;">Select PDF file</button>
+        <input type="file" id="file-input" style="display: none;" accept=".pdf" required>
+        <div id="selected-file-info" style="display: none;">
+        </div>
     </div>
     </div>
 
@@ -123,7 +124,7 @@
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
         </div>
-        <button class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select Image file</button>
+        <button class="btnselect" style="display: none;">Select Image file</button>
     </div>
 
     <div class="boxes boxes-docs"  onclick="toggleSize(this)">
@@ -148,7 +149,7 @@
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
         </div>
-        <button class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select PDF file</button>
+        <button class="btnselect" style="display: none;">Select PDF file</button>
     </div>
 
     <div class="boxes boxes-excel"  onclick="toggleSize(this)">
@@ -172,81 +173,9 @@
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
         </div>
-        <button class="btnselect" onclick="stopPropagation(event)" style="display: none;">Select PDF file</button>
+        <button class="btnselect" style="display: none;">Select PDF file</button>
     </div>
     </div>
-
-    <script>
-        function toggleSize(element) {
-            var arrow = element.querySelector('.next');
-            var lbldesc = element.querySelector('.lbldesc');
-            var lbladd = element.querySelector('.lbladd');
-            var btnselect = element.querySelector('.btnselect');
-    
-            if (element.classList.contains("enlarged")) {
-                element.classList.remove("enlarged");
-                arrow.classList.add('fadein')
-                arrow.style.display = 'block';
-                element.classList.add("shrunken");
-                btnselect.classList.remove('fadein');
-                lbldesc.classList.remove("fadein");
-                lbladd.classList.remove("fadein")
-                btnselect.style.display = 'none';
-                lbladd.style.display = 'none';
-                lbldesc.classList.add('fadeout');
-            } else {
-                element.classList.remove("shrunken");
-                element.classList.add("enlarged");
-                arrow.classList.add('fadeout');
-                arrow.style.display = 'none';
-                lbldesc.classList.add("fadein");
-                lbladd.classList.add("fadein")
-                btnselect.classList.add('fadein');
-                btnselect.style.display = 'block';
-                lbladd.style.display = 'block';
-                lbldesc.classList.remove('fadeout');
-            }
-        }
-    
-        function stopPropagation(event) {
-            event.stopPropagation();
-        }
-    
-        document.getElementById("file-select-btn").addEventListener("click", function(event) {
-            event.stopPropagation();
-            document.getElementById("file-input").click();
-        });
-    
-        document.getElementById("file-input").addEventListener("change", function(event) {
-            event.stopPropagation();
-            displaySelectedFiles(event.target.files);
-        });
-    
-        function displaySelectedFiles(files) {
-            var selectedFileContainer = document.getElementById("selected-file-info");
-            selectedFileContainer.innerHTML = "";
-            for (var i = 0; i < files.length; i++) {
-                var fileEntry = document.createElement('div');
-                fileEntry.classList.add('selected-file');
-                var fileName = document.createElement('span');
-                fileName.classList.add('selected-file-name');
-                fileName.textContent = files[i].name;
-                var removeBtn = document.createElement('button');
-                removeBtn.classList.add('remove-file-btn');
-                removeBtn.textContent = 'Remove';
-                removeBtn.addEventListener('click', function() {
-                    removeFileEntry(fileEntry);
-                });
-                fileEntry.appendChild(fileName);
-                fileEntry.appendChild(removeBtn);
-                selectedFileContainer.appendChild(fileEntry);
-            }
-            selectedFileContainer.style.display = "block";
-        }
-    
-        function removeFileEntry(fileEntry) {
-            fileEntry.remove();
-        }
-    </script>
 </body>
+<script src="../JS/script.js" defer></script>
 </html>
