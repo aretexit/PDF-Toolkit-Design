@@ -9,21 +9,6 @@
     <link href="../ICONS/css/fontawesome.css" rel="stylesheet" />
     <link href="../ICONS/css/brands.css" rel="stylesheet" />
     <link href="../ICONS/css/solid.css" rel="stylesheet" />
-    <style>
-        .selected-file {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .selected-file-name {
-            flex: 1;
-        }
-
-        .remove-file-btn {
-            margin-left: 10px;
-        }
-    </style>
 </head>
 <body>
 
@@ -65,8 +50,11 @@
         </div>
         <button id="file-select-btn" class="btnselect" style="display: none;">Select PDF files</button>
         <input type="file" id="file-input" style="display: none;" accept=".pdf" multiple required>
+        <div class="files-container">
         <div id="selected-file-info" style="display: none;">
         </div>
+        </div>
+        <button style="display: none;" class="mergebtn" id="mergebtn">Merge PDF <i class="fa-solid fa-arrow-right"></i></button>
     </div>
 
     <div class="boxes boxes-split"  onclick="toggleSize(this)">
@@ -92,10 +80,13 @@
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
         </div>
-        <button id="file-select-btn" class="btnselect" style="display: none;">Select PDF file</button>
-        <input type="file" id="file-input" style="display: none;" accept=".pdf" required>
-        <div id="selected-file-info" style="display: none;">
+        <button id="file-select-btn2" class="btnselect" style="display: none;">Select PDF file</button>
+        <input type="file" id="file-input-split" style="display: none;" accept=".pdf" required>
+        <div class="files-container">
+        <div id="selected-file-info2" style="display: none;">
         </div>
+        </div>
+        <button style="display: none;" class="splitbtn" id="splitbtn">Split PDF <i class="fa-solid fa-arrow-right"></i></button>
     </div>
     </div>
 
@@ -149,7 +140,7 @@
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
         </div>
-        <button class="btnselect" style="display: none;">Select PDF file</button>
+        <button id="file-select-btn" class="btnselect" style="display: none;">Select PDF file</button>
     </div>
 
     <div class="boxes boxes-excel"  onclick="toggleSize(this)">
@@ -177,5 +168,6 @@
     </div>
     </div>
 </body>
-<script src="../JS/script.js" defer></script>
+<script src="../JS/Front-Merge.js" defer></script>
+
 </html>

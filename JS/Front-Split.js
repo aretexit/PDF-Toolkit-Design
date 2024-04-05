@@ -5,8 +5,8 @@ function toggleSize(element) {
     }
 
     var target = event.target;
-    if (target.id === "file-select-btn" || 
-    target.id === "file-input" || 
+    if (target.id === "file-select-btn2" || 
+    target.id === "file-input-split" || 
     target.classList.contains("remove-file-btn") ||
     target.classList.contains("selected-file-name") ||
     target.classList.contains("selected-file") ||
@@ -48,36 +48,36 @@ function toggleSize(element) {
 }
 
 
-var btnselect = document.getElementById('file-select-btn');
-var btnmerge = document.getElementById('mergebtn');
+var btnselect = document.getElementById('file-select-btn2');
+var btnmerge = document.getElementById('splitbtn');
 
-document.getElementById("file-select-btn").addEventListener("click", function() {
+document.getElementById("file-select-btn2").addEventListener("click", function() {
     console.log("ehhhh");
-    document.getElementById("file-input").click();
+    document.getElementById("file-input-split").click();
     btnselect.style.display = 'none';
 });
 
-document.getElementById("file-input").addEventListener("change", function(event) {
+document.getElementById("file-input-split").addEventListener("change", function(event) {
     if (event.target.files.length === 0) {
-        document.getElementById("file-select-btn").style.display = "block";
+        document.getElementById("file-select-btn2").style.display = "block";
     }
     displaySelectedFiles(event.target.files);
 });
    
 
 function displaySelectedFiles(files) {
-    var selectedFileContainer = document.getElementById("selected-file-info");
+    var selectedFileContainer = document.getElementById("selected-file-info2");
     selectedFileContainer.innerHTML = '';
     if (files.length > 0) {
         for (var i = 0; i < files.length; i++) {
             var fileEntry = document.createElement('div');
-            fileEntry.classList.add('selected-file');
+            fileEntry.classList.add('selected-file2');
             
             var fileNameContainer = document.createElement('span');
             fileNameContainer.classList.add('file-name-container');
             
             var fileName = document.createElement('span');
-            fileName.classList.add('selected-file-name');
+            fileName.classList.add('selected-file-name2');
             fileName.textContent = files[i].name;
             
             var iconSpan = document.createElement('span');
@@ -85,7 +85,7 @@ function displaySelectedFiles(files) {
             
             var removeBtn = document.createElement('button');
             removeBtn.innerHTML = 'x';
-            removeBtn.classList.add('remove-file-btn');
+            removeBtn.classList.add('remove-file-btn2');
 
             fileNameContainer.appendChild(iconSpan);
             fileNameContainer.appendChild(fileName);
@@ -96,24 +96,24 @@ function displaySelectedFiles(files) {
             selectedFileContainer.appendChild(fileEntry);
         }
         selectedFileContainer.style.display = "block";
-        document.getElementById("mergebtn").style.display = "block"; 
+        document.getElementById("splitbtn").style.display = "block"; 
     } else {
         selectedFileContainer.style.display = "none"; 
-        document.getElementById("mergebtn").style.display = "none"; 
-        document.getElementById("file-select-btn").style.display = "block"; 
+        document.getElementById("splitbtn").style.display = "none"; 
+        document.getElementById("file-select-btn2").style.display = "block"; 
     }
 }
 
 
-document.getElementById("selected-file-info").addEventListener("click", function(event) {
-    if (event.target.classList.contains("remove-file-btn")) {
+document.getElementById("selected-file-info2").addEventListener("click", function(event) {
+    if (event.target.classList.contains("remove-file-btn2")) {
         var fileEntry = event.target.parentElement;
         fileEntry.remove();
-        var remainingFiles = document.querySelectorAll('.selected-file');
+        var remainingFiles = document.querySelectorAll('.selected-file2');
         if (remainingFiles.length === 0) {
-            document.getElementById("selected-file-info").style.display = "none";
-            document.getElementById("mergebtn").style.display = "none";
-            document.getElementById("file-select-btn").style.display = "block";
+            document.getElementById("selected-file-info2").style.display = "none";
+            document.getElementById("splitbtn").style.display = "none";
+            document.getElementById("file-select-btn2").style.display = "block";
         }
     }
 });
