@@ -4,11 +4,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #D4D4D4;
     user-select: none;
 }
 
-.body {
+body {
+    background-color: #D4D4D4;
     overflow-y: hidden;
     font-family: "Inter", sans-serif;
 }
@@ -154,7 +154,6 @@
     flex-direction: column;
     align-items: flex-start;
     background-color: transparent;
-    width: 10rem;
 }
 
 .lbltitle {
@@ -227,13 +226,13 @@
 .btnselect {
     background: #EA2929;
     border-radius: 8px;
-    width: 135px;
-    height: 32px;
+    width: 160px;
+    height: 40px;
     border-style: none;
     color: #F9F9F9;
     font-family: "Inter", sans-serif;
-    margin-top: 5.5rem;
-    margin-right: 3rem;
+    margin-top: 7rem;
+    margin-left: 5rem;
     cursor: pointer;
     min-width: 135px;
 }
@@ -246,39 +245,83 @@
     animation: fadeIn 1s ease forwards;
 }
 
-.selected-file {
-    margin-left: -10rem;
+.selected-file-info {
+    background-color: transparent;
 }
 
-.selected-file-name {
+.selected-file {
+    background-color: transparent;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.file-name-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 8px 8px 8px 16px;
     gap: 16px;
-    background-color: #FFFFFF;
+    background-color: #F9F9F9;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
     width: 205.58px;
     height: 45px;
+    margin-left: 2rem;
+}
+
+.selected-file-name {
+    background-color: transparent;
 }
 
 
 .fileicon {
-    position: absolute;
+    background-color: transparent;
     color: #848080;
     font-size: 25px;
-    background-color: #FFFFFF;
 }
-
 
 .remove-file-btn {
-    background: transparent;
-    border-style: none;
-    float: right;
+    background: black;
+    border-style: solid;
+    border-radius: 50%;
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    text-align: center;
+    padding-left: 1.5px;
+    padding-bottom: 1px;
+    width: 15px;
+    height: 15px;
     z-index: 99;
+    font-size: 10px;
+    color: white;
+    margin-left: 10px;
 }
 
+.files-container {
+    width: auto;
+    height: 160px;
+    max-height: 160px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    margin-top: 20px;
+}
+
+.mergebtn, .splitbtn{
+    padding: 8px 10px;
+    gap: 4px;
+    margin: 0 auto;
+    width: 135px;
+    height: 32px;
+    background: #EA2929;
+    border-radius: 8px;
+    border-style: none;
+    position: absolute;
+    margin-left: 16rem;
+    margin-top: 12rem;
+    color: white;
+}
+
+.splitbtn {
+    margin-top: 9rem;
+}
