@@ -1,12 +1,15 @@
+//<==================================================ANIMATIONS=====================================================================>
 function toggleSize(element) {
     var selectedFiles = document.querySelectorAll('.selected-file');
     var selectedFilesSplit = document.querySelectorAll('.selected-file-split');
     var selectedFilesImg = document.querySelectorAll('.selected-file-img');
     var selectedFilesDocs = document.querySelectorAll('.selected-file-docs');
+    var selectedFilesExcel = document.querySelectorAll('.selected-file-excel');
     if (selectedFiles.length > 0 ||
         selectedFilesSplit.length > 0 ||
         selectedFilesImg.length > 0 ||
-        selectedFilesDocs.length > 0) {
+        selectedFilesDocs.length > 0 ||
+        selectedFilesExcel.length > 0) {
         return;
     }
 
@@ -19,28 +22,30 @@ function toggleSize(element) {
     target.id === "file-input-img" || 
     target.id === "file-select-docsbtn" || 
     target.id === "file-input-docs" || 
+    target.id === "file-select-excelbtn" || 
+    target.id === "file-input-excel" ||
     target.classList.contains("remove-file-btn") ||
     target.classList.contains("selected-file-name") ||
     target.classList.contains("selected-file") ||
     target.classList.contains("file-name-container") ||
-    target.classList.contains("remove-file-btn") ||
     target.classList.contains("fa-xmark") ||
     target.classList.contains("fileicon") ||
     target.classList.contains("remove-file-btn-split") ||
     target.classList.contains("selected-file-name-split") ||
     target.classList.contains("selected-file-split") ||
     target.classList.contains("file-name-container-split") ||
-    target.classList.contains("remove-file-btn-split") ||
     target.classList.contains("remove-file-btn-img") ||
     target.classList.contains("selected-file-name-img") ||
     target.classList.contains("selected-file-img") ||
     target.classList.contains("file-name-container-img") ||
-    target.classList.contains("remove-file-btn-img") ||
     target.classList.contains("remove-file-btn-docs") ||
     target.classList.contains("selected-file-name-docs") ||
     target.classList.contains("selected-file-docs") ||
-    target.classList.contains("file-name-container-docs") ||
-    target.classList.contains("remove-file-btn-docs")) {
+    target.classList.contains("file-name-container-docs")||
+    target.classList.contains("remove-file-btn-excel") ||
+    target.classList.contains("selected-file-name-excel") ||
+    target.classList.contains("selected-file-excel") ||
+    target.classList.contains("file-name-container-excel")) {
         return;
     }
 
@@ -74,6 +79,97 @@ function toggleSize(element) {
     }
 }
 
+//<============================================================================================================================>
+
+//<==================================================DATA=====================================================================>
+
+function displaySelectedFiles(files, mode) {
+    var selectedFileContainer = document.getElementById(
+        mode === 'merge' ? "selected-file-info" : 
+        mode === 'split' ? "selected-file-info-split" :
+        mode === 'img' ? "selected-file-info-img" :
+        mode === 'docs' ? "selected-file-info-docs" :
+        "selected-file-info-excel"
+    );
+    selectedFileContainer.innerHTML = '';
+    if (files.length > 0) {
+        for (var i = 0; i < files.length; i++) {
+            var fileEntry = document.createElement('div');
+            fileEntry.classList.add(
+                mode === 'merge' ? 'selected-file' : 
+                mode === 'split' ? 'selected-file-split' : 
+                mode === 'img' ?    'selected-file-img' :
+                mode === 'docs' ?  'selected-file-docs':
+                'selected-file-excel');
+            
+            var fileNameContainer = document.createElement('span');
+            fileNameContainer.classList.add(
+                mode === 'merge' ? 'file-name-container' : 
+                mode === 'split' ? 'file-name-container-split' :
+                mode === 'img' ? 'file-name-container-img' :
+                mode === 'docs' ?  'file-name-container-docs':
+                'file-name-container-excel');
+            
+            var fileName = document.createElement('span');
+            fileName.classList.add(
+                mode === 'merge' ? 'selected-file-name' : 
+                mode === 'split' ? 'selected-file-name-split' :
+                mode === 'img' ? 'selected-file-name-img' :
+                mode === 'docs' ?  'selected-file-name-docs' :
+                'selected-file-name-excel');
+            fileName.textContent = files[i].name;
+            
+            var iconSpan = document.createElement('span');
+            iconSpan.classList.add('fileicon');
+            if (mode === 'img') {
+                iconSpan.innerHTML = '<i class="fa-solid fa-image"></i>';
+            } else {
+                iconSpan.innerHTML = '<i class="fa-solid fa-file-lines"></i> ';
+            }
+            
+            var removeBtn = document.createElement('button');
+            removeBtn.innerHTML = 'x';
+            removeBtn.classList.add(
+                mode === 'merge' ? 'remove-file-btn' : 
+                mode === 'split' ? 'remove-file-btn-split' :
+                mode === 'img' ? 'remove-file-btn-img' :
+                mode === 'docs' ?  'remove-file-btn-docs' :
+                'remove-file-btn-excel');
+
+            fileNameContainer.appendChild(iconSpan);
+            fileNameContainer.appendChild(fileName);
+            
+            fileEntry.appendChild(fileNameContainer);
+            fileEntry.appendChild(removeBtn);
+            
+            selectedFileContainer.appendChild(fileEntry);
+        }
+        selectedFileContainer.style.display = "block";
+        document.getElementById(
+            mode === 'merge' ? 'mergebtn' : 
+            mode === 'split' ? 'splitbtn' :
+            mode === 'img' ?    'imgbtn' :
+            mode === 'docs' ?  'docsbtn' :
+            'excelbtn').style.display = "block"; 
+    } else {
+        selectedFileContainer.style.display = "none"; 
+        document.getElementById(
+            mode === 'merge' ? "mergebtn" : 
+            mode === 'split' ? "splitbtn" :
+            mode === 'img' ? "imgbtn" :
+            mode === 'docs' ?  "docsbtn" :
+            "excelbtn").style.display = "none"; 
+        document.getElementById(
+            mode === 'merge' ? "file-select-btn" : 
+            mode === 'split' ? "file-select-splitbtn" :
+            mode === 'img' ? "file-select-imgbtn" :
+            mode === 'docs' ?  "file-select-docsbtn":
+            "file-select-excelbtn").style.display = "block"; 
+    }
+}
+
+//<============================================================================================================================>
+
 //<==================================================MERGE=====================================================================>
 
 var btnselect = document.getElementById('file-select-btn');
@@ -91,84 +187,6 @@ document.getElementById("file-input").addEventListener("change", function(event)
     displaySelectedFiles(event.target.files, 'merge');
 });
    
-
-function displaySelectedFiles(files, mode) {
-    var selectedFileContainer = document.getElementById(
-        mode === 'merge' ? "selected-file-info" : 
-        mode === 'split' ? "selected-file-info-split" :
-        mode === 'img' ? "selected-file-info-img" :
-        "selected-file-info-docs"
-    );
-    selectedFileContainer.innerHTML = '';
-    if (files.length > 0) {
-        for (var i = 0; i < files.length; i++) {
-            var fileEntry = document.createElement('div');
-            fileEntry.classList.add(
-                mode === 'merge' ? 'selected-file' : 
-                mode === 'split' ? 'selected-file-split' : 
-                mode === 'img' ? 'selected-file-img' :
-                'selected-file-docs');
-            
-            var fileNameContainer = document.createElement('span');
-            fileNameContainer.classList.add(
-                mode === 'merge' ? 'file-name-container' : 
-                mode === 'split' ? 'file-name-container-split' :
-                mode === 'img' ? 'file-name-container-img' :
-                'file-name-container-docs');
-            
-            var fileName = document.createElement('span');
-            fileName.classList.add(
-                mode === 'merge' ? 'selected-file-name' : 
-                mode === 'split' ? 'selected-file-name-split' :
-                mode === 'img' ? 'selected-file-name-img' :
-                'selected-file-name-docs');
-            fileName.textContent = files[i].name;
-            
-            var iconSpan = document.createElement('span');
-            iconSpan.classList.add('fileicon');
-            if (mode === 'img') {
-                iconSpan.innerHTML = '<i class="fa-solid fa-image"></i>';
-            } else {
-                iconSpan.innerHTML = '<i class="fa-solid fa-file-lines"></i> ';
-            }
-            
-            var removeBtn = document.createElement('button');
-            removeBtn.innerHTML = 'x';
-            removeBtn.classList.add(
-                mode === 'merge' ? 'remove-file-btn' : 
-                mode === 'split' ? 'remove-file-btn-split' :
-                mode === 'img' ? 'remove-file-btn-img' :
-                'remove-file-btn-docs');
-
-            fileNameContainer.appendChild(iconSpan);
-            fileNameContainer.appendChild(fileName);
-            
-            fileEntry.appendChild(fileNameContainer);
-            fileEntry.appendChild(removeBtn);
-            
-            selectedFileContainer.appendChild(fileEntry);
-        }
-        selectedFileContainer.style.display = "block";
-        document.getElementById(
-            mode === 'merge' ? "mergebtn" : 
-            mode === 'split' ? "splitbtn" :
-            mode === 'img' ?"imgbtn" :
-            'docsbtn').style.display = "block"; 
-    } else {
-        selectedFileContainer.style.display = "none"; 
-        document.getElementById(
-            mode === 'merge' ? "mergebtn" : 
-            mode === 'split' ? "splitbtn" :
-            mode === 'img' ? "imgbtn" :
-            "docsbtn").style.display = "none"; 
-        document.getElementById(
-            mode === 'merge' ? "file-select-btn" : 
-            mode === 'split' ? "file-select-splitbtn" :
-            mode === 'img' ? "file-select-imgbtn" :
-            "file-select-docsbtn").style.display = "block"; 
-    }
-}
-
 document.getElementById("selected-file-info").addEventListener("click", function(event) {
     if (event.target.classList.contains("remove-file-btn")) {
         var fileEntry = event.target.parentElement;
@@ -215,6 +233,7 @@ document.getElementById("selected-file-info-split").addEventListener("click", fu
     }
 });
 
+
 //<==========================================================================================================================>
 
 //<==================================================IMG=====================================================================>
@@ -257,7 +276,7 @@ var btndocs = document.getElementById('docsbtn');
 
 document.getElementById("file-select-docsbtn").addEventListener("click", function() {
     document.getElementById("file-input-docs").click();
-    imgbtnselect.style.display = 'none';
+    docsbtnselect.style.display = 'none';
 });
 
 document.getElementById("file-input-docs").addEventListener("change", function(event) {
@@ -277,6 +296,39 @@ document.getElementById("selected-file-info-docs").addEventListener("click", fun
             document.getElementById("selected-file-info-docs").style.display = "none";
             document.getElementById("docsbtn").style.display = "none";
             document.getElementById("file-select-docsbtn").style.display = "block";
+        }
+    }
+});
+
+//<============================================================================================================================>
+
+//<==================================================EXCEL=====================================================================>
+
+var excelbtnselect = document.getElementById('file-select-excelbtn');
+var btnexcel = document.getElementById('excelbtn');
+
+document.getElementById("file-select-excelbtn").addEventListener("click", function() {
+    document.getElementById("file-input-excel").click();
+    excelbtnselect.style.display = 'none';
+});
+
+document.getElementById("file-input-excel").addEventListener("change", function(event) {
+    if (event.target.files.length === 0) {
+        document.getElementById("file-select-excelbtn").style.display = "block";
+    }
+    displaySelectedFiles(event.target.files, 'excel');
+});
+   
+
+document.getElementById("selected-file-info-excel").addEventListener("click", function(event) {
+    if (event.target.classList.contains("remove-file-btn-excel")) {
+        var fileEntryExcel = event.target.parentElement;
+        fileEntryExcel.remove();
+        var remainingFilesExcel = document.querySelectorAll('.selected-file-excel');
+        if (remainingFilesExcel.length === 0) {
+            document.getElementById("selected-file-info-excel").style.display = "none";
+            document.getElementById("excelbtn").style.display = "none";
+            document.getElementById("file-select-excelbtn").style.display = "block";
         }
     }
 });
