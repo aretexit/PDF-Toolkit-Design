@@ -11,7 +11,7 @@
     <link href="../ICONS/css/solid.css" rel="stylesheet" />
 </head>
 <body>
-
+    <!-----------------------------NAVIGATION BAR--------------------------------------------->
     <div class="nav">
         <a href="" class="icons"><i class="fa-solid fa-house"></i></a>
         <a href="" class="icons"><i class="fa-solid fa-gear"></i></a>
@@ -23,7 +23,11 @@
             </div>
         </a>
     </div>
+    <!----------------------------------------------------------------------------------------->
+
     <div class="box-row1">
+    <!-----------------------------------MERGE PDF--------------------------------------------->
+
     <div class="boxes boxes-merge"  onclick="toggleSize(this)">
         <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
         <img src="../IMAGES/mergeicon.png" alt="mereg" class="mergeimage">
@@ -57,6 +61,10 @@
         <button style="display: none;" class="mergebtn" id="mergebtn">Merge PDF <i class="fa-solid fa-arrow-right"></i></button>
     </div>
 
+    <!----------------------------------------------------------------------------------------->
+
+    <!-----------------------------------SPLIT PDF--------------------------------------------->
+
     <div class="boxes boxes-split"  onclick="toggleSize(this)">
         <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
         <img src="../IMAGES/spliticon.png" alt="mereg" class="mergeimage">
@@ -80,18 +88,22 @@
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
         </div>
-        <button id="file-select-btn2" class="btnselect" style="display: none;">Select PDF file</button>
+        <button id="file-select-splitbtn" class="btnselect" style="display: none;">Select PDF file</button>
         <input type="file" id="file-input-split" style="display: none;" accept=".pdf" required>
-        <div class="files-container">
-        <div id="selected-file-info2" style="display: none;">
+        <div class="files-container-split">
+        <div id="selected-file-info-split" style="display: none;">
         </div>
         </div>
         <button style="display: none;" class="splitbtn" id="splitbtn">Split PDF <i class="fa-solid fa-arrow-right"></i></button>
     </div>
     </div>
 
+    <!-------------------------------------------------------------------------------------------->
+
     <div class="box-row2">
 
+    <!-----------------------------------IMAGE to PDF--------------------------------------------->
+    
     <div class="boxes boxes-img"  onclick="toggleSize(this)">
         <img src="../IMAGES/imgicon.png" alt="pdf" class="pdfimage">
         <img src="../IMAGES/converticon.png" alt="mereg" class="mergeimage">
@@ -115,8 +127,18 @@
                 <i class="fa-solid fa-arrow-right next"></i>
         </label>
         </div>
-        <button class="btnselect" style="display: none;">Select Image file</button>
+        <button id="file-select-imgbtn" class="btnselect" style="display: none;">Select Image file</button>
+        <input type="file" id="file-input-img" style="display: none;" accept="image/*" required>
+        <div class="files-container-img">
+        <div id="selected-file-info-img" style="display: none;">
+        </div>
+        </div>
+        <button style="display: none;" class="imgbtn" id="imgbtn">Convert <i class="fa-solid fa-arrow-right"></i></button>
     </div>
+
+    <!-------------------------------------------------------------------------------------------->
+    
+    <!------------------------------------PDF to Docs--------------------------------------------->
 
     <div class="boxes boxes-docs"  onclick="toggleSize(this)">
         <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
@@ -143,6 +165,10 @@
         <button id="file-select-btn" class="btnselect" style="display: none;">Select PDF file</button>
     </div>
 
+    <!--------------------------------------------------------------------------------------------->
+    
+    <!------------------------------------PDF to Excel--------------------------------------------->
+
     <div class="boxes boxes-excel"  onclick="toggleSize(this)">
         <img src="../IMAGES/pdficon.png" alt="pdf" class="pdfimage">
         <img src="../IMAGES/converticon.png" alt="mereg" class="mergeimage">
@@ -167,7 +193,11 @@
         <button class="btnselect" style="display: none;">Select PDF file</button>
     </div>
     </div>
+
+    <!-------------------------------------------------------------------------------------------->
+
 </body>
-<script src="../JS/Front-Merge.js" defer></script>
+
+<script src="../JS/script.js" defer></script>
 
 </html>
