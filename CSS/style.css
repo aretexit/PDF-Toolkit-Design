@@ -238,7 +238,7 @@ body {
 }
 
 .btnselect.fadein {
-    animation: fadeIn  .9s ease-in ;
+    animation: fadeIn  1s ease-in ;
 }
 
 .lbladd.fadein {
@@ -345,4 +345,10 @@ body {
 .selected-file-split, 
 .selected-file-img {
     margin-top: 4rem;
+}
+
+.aretex {
+    width: 30rem;
+    margin-top: 9rem;
+    margin-left: 2rem;
 }
