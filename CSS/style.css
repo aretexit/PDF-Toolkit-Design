@@ -245,17 +245,11 @@ body {
     animation: fadeIn 1s ease forwards;
 }
 
-.selected-file-info, 
-.selected-file-info-split, 
-.selected-file-info-img,
-.selected-file-info-docs {
-    background-color: transparent;
-}
-
 .selected-file, 
-.selected-file-info-split, 
+.selected-file-split, 
 .selected-file-img,
-.selected-file-docs {
+.selected-file-docs,
+.selected-file-excel {
     background-color: transparent;
     font-size: 10px;
     display: flex;
@@ -266,7 +260,8 @@ body {
 .file-name-container, 
 .file-name-container-split, 
 .file-name-container-img,
-.file-name-container-docs {
+.file-name-container-docs,
+.file-name-container-excel {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -280,14 +275,6 @@ body {
     margin-left: 2rem;
 }
 
-.selected-file-name, 
-.selected-file-name-split, 
-.selected-file-name-img,
-.selected-file-name-docs {
-    background-color: transparent;
-}
-
-
 .fileicon {
     background-color: transparent;
     color: #848080;
@@ -297,7 +284,8 @@ body {
 .remove-file-btn, 
 .remove-file-btn-split, 
 .remove-file-btn-img,
-.remove-file-btn-docs {
+.remove-file-btn-docs,
+.remove-file-btn-excel {
     background: black;
     border-style: solid;
     border-radius: 50%;
@@ -316,7 +304,8 @@ body {
 .files-container, 
 .files-container-split, 
 .files-container-img,
-.files-container-docs {
+.files-container-docs,
+.files-container-excel {
     width: auto;
     height: 160px;
     max-height: 160px;
@@ -328,7 +317,8 @@ body {
 .mergebtn, 
 .splitbtn, 
 .imgbtn,
-.docsbtn {
+.docsbtn,
+.excelbtn {
     padding: 8px 10px;
     gap: 4px;
     margin: 0 auto;
@@ -346,13 +336,15 @@ body {
 
 .splitbtn,
 .imgbtn,
-.docsbtn {
+.docsbtn,
+.excelbtn {
     margin-top: 9rem;
 }
 
 .selected-file-split, 
 .selected-file-img,
-.selected-file-img {
+.selected-file-docs,
+.selected-file-excel {
     margin-top: 4rem;
 }
 
