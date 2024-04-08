@@ -73,4 +73,11 @@ Daily Update:
   - Test Built/Packaged the design to see if there's an error.
   - Created a test MSI installer for the PDF-Toolkit.
   - Next Plan - Continue the design, create a better msi installer if possible.
+
+○ `04/08/2024`
+  - Created file selection for Split PDF.
+  - Fixed conflicts between merge pdf and split pdf.
+  - Created file selection for Image to PDF.
+  - Added new icon and logo.
+  - Created file selection for PDF to Docs.
     
