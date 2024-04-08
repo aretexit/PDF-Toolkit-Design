@@ -2,9 +2,11 @@ function toggleSize(element) {
     var selectedFiles = document.querySelectorAll('.selected-file');
     var selectedFilesSplit = document.querySelectorAll('.selected-file-split');
     var selectedFilesImg = document.querySelectorAll('.selected-file-img');
+    var selectedFilesDocs = document.querySelectorAll('.selected-file-docs');
     if (selectedFiles.length > 0 ||
         selectedFilesSplit.length > 0 ||
-        selectedFilesImg.length > 0) {
+        selectedFilesImg.length > 0 ||
+        selectedFilesDocs.length > 0) {
         return;
     }
 
@@ -15,6 +17,8 @@ function toggleSize(element) {
     target.id === "file-input-split" || 
     target.id === "file-select-imgbtn" || 
     target.id === "file-input-img" || 
+    target.id === "file-select-docsbtn" || 
+    target.id === "file-input-docs" || 
     target.classList.contains("remove-file-btn") ||
     target.classList.contains("selected-file-name") ||
     target.classList.contains("selected-file") ||
@@ -31,7 +35,12 @@ function toggleSize(element) {
     target.classList.contains("selected-file-name-img") ||
     target.classList.contains("selected-file-img") ||
     target.classList.contains("file-name-container-img") ||
-    target.classList.contains("remove-file-btn-img")) {
+    target.classList.contains("remove-file-btn-img") ||
+    target.classList.contains("remove-file-btn-docs") ||
+    target.classList.contains("selected-file-name-docs") ||
+    target.classList.contains("selected-file-docs") ||
+    target.classList.contains("file-name-container-docs") ||
+    target.classList.contains("remove-file-btn-docs")) {
         return;
     }
 
@@ -87,7 +96,8 @@ function displaySelectedFiles(files, mode) {
     var selectedFileContainer = document.getElementById(
         mode === 'merge' ? "selected-file-info" : 
         mode === 'split' ? "selected-file-info-split" :
-        "selected-file-info-img"
+        mode === 'img' ? "selected-file-info-img" :
+        "selected-file-info-docs"
     );
     selectedFileContainer.innerHTML = '';
     if (files.length > 0) {
@@ -96,19 +106,22 @@ function displaySelectedFiles(files, mode) {
             fileEntry.classList.add(
                 mode === 'merge' ? 'selected-file' : 
                 mode === 'split' ? 'selected-file-split' : 
-                'selected-file-img');
+                mode === 'img' ? 'selected-file-img' :
+                'selected-file-docs');
             
             var fileNameContainer = document.createElement('span');
             fileNameContainer.classList.add(
                 mode === 'merge' ? 'file-name-container' : 
                 mode === 'split' ? 'file-name-container-split' :
-                'file-name-container-img');
+                mode === 'img' ? 'file-name-container-img' :
+                'file-name-container-docs');
             
             var fileName = document.createElement('span');
             fileName.classList.add(
                 mode === 'merge' ? 'selected-file-name' : 
                 mode === 'split' ? 'selected-file-name-split' :
-                'selected-file-name-img');
+                mode === 'img' ? 'selected-file-name-img' :
+                'selected-file-name-docs');
             fileName.textContent = files[i].name;
             
             var iconSpan = document.createElement('span');
@@ -124,7 +137,8 @@ function displaySelectedFiles(files, mode) {
             removeBtn.classList.add(
                 mode === 'merge' ? 'remove-file-btn' : 
                 mode === 'split' ? 'remove-file-btn-split' :
-                'remove-file-btn-img');
+                mode === 'img' ? 'remove-file-btn-img' :
+                'remove-file-btn-docs');
 
             fileNameContainer.appendChild(iconSpan);
             fileNameContainer.appendChild(fileName);
@@ -138,17 +152,20 @@ function displaySelectedFiles(files, mode) {
         document.getElementById(
             mode === 'merge' ? "mergebtn" : 
             mode === 'split' ? "splitbtn" :
-            "imgbtn").style.display = "block"; 
+            mode === 'img' ?"imgbtn" :
+            'docsbtn').style.display = "block"; 
     } else {
         selectedFileContainer.style.display = "none"; 
         document.getElementById(
             mode === 'merge' ? "mergebtn" : 
-            mode === 'merge' ? "splitbtn" :
-            "imgbtn").style.display = "none"; 
+            mode === 'split' ? "splitbtn" :
+            mode === 'img' ? "imgbtn" :
+            "docsbtn").style.display = "none"; 
         document.getElementById(
             mode === 'merge' ? "file-select-btn" : 
-            mode === 'merge' ? "file-select-splitbtn" :
-            "file-select-imgbtn").style.display = "block"; 
+            mode === 'split' ? "file-select-splitbtn" :
+            mode === 'img' ? "file-select-imgbtn" :
+            "file-select-docsbtn").style.display = "block"; 
     }
 }
 
@@ -227,6 +244,39 @@ document.getElementById("selected-file-info-img").addEventListener("click", func
             document.getElementById("selected-file-info-img").style.display = "none";
             document.getElementById("imgbtn").style.display = "none";
             document.getElementById("file-select-imgbtn").style.display = "block";
+        }
+    }
+});
+
+//<============================================================================================================================>
+
+//<==================================================DOCS=====================================================================>
+
+var docsbtnselect = document.getElementById('file-select-docsbtn');
+var btndocs = document.getElementById('docsbtn');
+
+document.getElementById("file-select-docsbtn").addEventListener("click", function() {
+    document.getElementById("file-input-docs").click();
+    imgbtnselect.style.display = 'none';
+});
+
+document.getElementById("file-input-docs").addEventListener("change", function(event) {
+    if (event.target.files.length === 0) {
+        document.getElementById("file-select-docsbtn").style.display = "block";
+    }
+    displaySelectedFiles(event.target.files, 'docs');
+});
+   
+
+document.getElementById("selected-file-info-docs").addEventListener("click", function(event) {
+    if (event.target.classList.contains("remove-file-btn-docs")) {
+        var fileEntryDocs = event.target.parentElement;
+        fileEntryDocs.remove();
+        var remainingFilesDocs = document.querySelectorAll('.selected-file-docs');
+        if (remainingFilesDocs.length === 0) {
+            document.getElementById("selected-file-info-docs").style.display = "none";
+            document.getElementById("docsbtn").style.display = "none";
+            document.getElementById("file-select-docsbtn").style.display = "block";
         }
     }
 });
