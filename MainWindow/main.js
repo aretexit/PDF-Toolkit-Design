@@ -6,6 +6,7 @@ function createWindow () {
     width: 800,
     height: 600,
     autoHideMenuBar: true,
+    icon: './IMAGES/ptk-logo2.png',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
