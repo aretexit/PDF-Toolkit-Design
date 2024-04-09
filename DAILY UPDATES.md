@@ -90,4 +90,8 @@ Daily Update:
   - Added download button and back button for Merge PDF.
   - Successfully integrated Merge PDF backend to the new Frontend.
   - Identifying bugs.
+![Alt text](https://github.com/KuroKami2023/PDF-Toolkit-Design/blob/main/IMAGES/Design%20p1.png?raw=true)
+![Alt text](https://github.com/KuroKami2023/PDF-Toolkit-Design/blob/main/IMAGES/Design%20p2.png?raw=true)
+![Alt text](https://github.com/KuroKami2023/PDF-Toolkit-Design/blob/main/IMAGES/Design%20p3.png?raw=true)
+![Alt text](https://github.com/KuroKami2023/PDF-Toolkit-Design/blob/main/IMAGES/Design%20p5.png?raw=true)
     
