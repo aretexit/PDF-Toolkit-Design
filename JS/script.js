@@ -183,6 +183,8 @@ document.getElementById("file-select-btn").addEventListener("click", function() 
 document.getElementById("file-input").addEventListener("change", function(event) {
     if (event.target.files.length === 0) {
         document.getElementById("file-select-btn").style.display = "block";
+    } else {
+        document.getElementById('mergeFiles').style.display = "block";
     }
     displaySelectedFiles(event.target.files, 'merge');
 });

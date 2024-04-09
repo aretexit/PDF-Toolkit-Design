@@ -8,6 +8,8 @@ function createWindow () {
     autoHideMenuBar: true,
     icon: './IMAGES/ptk-logo2.png',
     webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
       preload: path.join(__dirname, 'preload.js')
     }
   })

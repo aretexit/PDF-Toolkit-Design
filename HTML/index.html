@@ -54,11 +54,14 @@
         </div>
         <button id="file-select-btn" class="btnselect" style="display: none;">Select PDF files</button>
         <input type="file" id="file-input" style="display: none;" accept=".pdf" multiple required>
-        <div class="files-container">
+        <div class="files-container" id="mergeFiles">
         <div id="selected-file-info" style="display: none;">
         </div>
         </div>
         <button style="display: none;" class="mergebtn" id="mergebtn">Merge PDF <i class="fa-solid fa-arrow-right"></i></button>
+        <button style="display: none;" class="download" id="download"><i class="fa-solid fa-download"></i> Download PDF</i></button>
+        <br>
+        <a class="backbtn" style="display: none;" id="backbtn"><i class="fa-solid fa-circle-arrow-left" ></i>Back to Merge PDF</a>
     </div>
 
     <!----------------------------------------------------------------------------------------->
@@ -213,5 +216,6 @@
 </body>
 
 <script src="../JS/script.js" defer></script>
+<script src="../JS/merge.js" defer></script>
 
 </html>
