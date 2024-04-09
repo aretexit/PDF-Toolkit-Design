@@ -353,3 +353,29 @@ body {
     margin-top: 9rem;
     margin-left: 2rem;
 }
+
+.download {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+    gap: 4px;
+    color: white;
+    width: 160px;
+    height: 40px;
+    border-style: none;
+    background: #EA2929;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 5.5rem;
+    margin-left: 4rem;
+}
+
+.backbtn {
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 8.5rem;
+    margin-left: -8.5rem;
+}
