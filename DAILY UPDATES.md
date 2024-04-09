@@ -89,4 +89,5 @@ Daily Update:
   - Meeting  with Mr. Reinier Silo for the finalization of PDF Toolkit Design.
   - Added download button and back button for Merge PDF.
   - Successfully integrated Merge PDF backend to the new Frontend.
+  - Identifying bugs.
     
