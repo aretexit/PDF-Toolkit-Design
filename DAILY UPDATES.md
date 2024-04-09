@@ -80,4 +80,5 @@ Daily Update:
   - Created file selection for Image to PDF.
   - Added new icon and logo.
   - Created file selection for PDF to Docs.
+  - Added code dividers. 
     
