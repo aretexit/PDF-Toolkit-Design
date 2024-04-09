@@ -80,5 +80,13 @@ Daily Update:
   - Created file selection for Image to PDF.
   - Added new icon and logo.
   - Created file selection for PDF to Docs.
-  - Added code dividers. 
+  - Added code dividers.
+
+○ `04/09/2024`
+  - Created file selection for PDF to Excel
+  - Fixed PDF to Docs design bug.
+  - Finished Initial Design with minimal bugs.
+  - Meeting  with Mr. Reinier Silo for the finalization of PDF Toolkit Design.
+  - Added download button and back button for Merge PDF.
+  - Successfully integrated Merge PDF backend to the new Frontend.
     
