@@ -1,5 +1,7 @@
-const { app, BrowserWindow } = require('electron/main')
+const {app, BrowserWindow, ipcMain, dialog } = require('electron/main')
 const path = require('node:path')
+const excel = require('../JS/excel')
+const fs = require('fs');
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -11,7 +13,8 @@ function createWindow () {
       nodeIntegration: true,
       contextIsolation: false,
       preload: path.join(__dirname, 'preload.js')
-    }
+    },
+    visibleOnAllWorkspaces: true,
   })
   win.maximize()
   win.loadFile('./HTML/index.html')
@@ -32,3 +35,41 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+//<=========================================PDF2EXCEL====================================================>
+
+ipcMain.handle('save-excel', async (event, convertedFilePath) => {
+  const excelBuffer = fs.readFileSync(convertedFilePath);
+
+  const pdfFileName = path.basename(convertedFilePath, path.extname(convertedFilePath));
+  const defaultPath = path.join(path.dirname(convertedFilePath), '');
+
+  const { filePath, canceled } = await dialog.showSaveDialog({
+    defaultPath: path.join(defaultPath, pdfFileName),
+      filters: [{ name: 'Excel Files', extensions: ['xlsx'] }]
+  });
+
+  if (!canceled && filePath) {
+      try {
+          fs.writeFileSync(filePath, excelBuffer);
+          return { filePath };
+      } catch (error) {
+          console.error('Error saving Excel file:', error);
+          return { error: 'Error saving Excel file' };
+      }
+  } else {
+      console.log('Saving process canceled');
+      return null; 
+  }
+});
+
+ipcMain.on('start-conversion', async (event, { filePath, outputDir }) => { 
+  try {
+    const convertedFilePath = await excel.main(filePath, outputDir); 
+    event.reply('conversion-complete', convertedFilePath);
+  } catch (error) {
+  }
+  
+});
+
+//<=====================================================================================================>
