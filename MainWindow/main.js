@@ -1,6 +1,7 @@
 const {app, BrowserWindow, ipcMain, dialog } = require('electron/main')
 const path = require('node:path')
 const excel = require('../JS/excel')
+const excel2 = require('../JS/excel-multiple')
 const fs = require('fs');
 
 function createWindow () {
@@ -66,6 +67,15 @@ ipcMain.handle('save-excel', async (event, convertedFilePath) => {
 ipcMain.on('start-conversion', async (event, { filePath, outputDir }) => { 
   try {
     const convertedFilePath = await excel.main(filePath, outputDir); 
+    event.reply('conversion-complete', convertedFilePath);
+  } catch (error) {
+  }
+  
+});
+
+ipcMain.on('start-conversion2', async (event, { filePath, outputDir }) => { 
+  try {
+    const convertedFilePath = await excel2.main(filePath, outputDir); 
     event.reply('conversion-complete', convertedFilePath);
   } catch (error) {
   }

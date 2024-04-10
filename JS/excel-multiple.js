@@ -8,7 +8,7 @@ async function convertToExcelWithOCR(inputPath, outputPath) {
             File: inputPath,
             IncludeFormatting: 'true',
             EnableOCR: 'true',
-            SingleSheet: 'true',
+            SingleSheet: 'false',
             IncludeFormatting: 'false',
 
         }).then(function (result) {

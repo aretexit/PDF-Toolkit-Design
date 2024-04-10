@@ -145,12 +145,14 @@ function displaySelectedFiles(files, mode) {
             selectedFileContainer.appendChild(fileEntry);
         }
         selectedFileContainer.style.display = "block";
-        document.getElementById(
-            mode === 'merge' ? 'mergebtn' : 
-            mode === 'split' ? 'splitbtn' :
-            mode === 'img' ?    'imgbtn' :
-            mode === 'docs' ?  'docsbtn' :
-            'excelbtn').style.display = "block"; 
+        
+        if (mode === 'excel') {
+            document.getElementById('excelbtn').style.display = "block"; 
+            document.getElementById('excelbtn2').style.display = "block"; 
+        } else {
+            document.getElementById('excelbtn').style.display = "none"; 
+            document.getElementById('excelbtn2').style.display = "none"; 
+        }
     } else {
         selectedFileContainer.style.display = "none"; 
         document.getElementById(
@@ -158,7 +160,7 @@ function displaySelectedFiles(files, mode) {
             mode === 'split' ? "splitbtn" :
             mode === 'img' ? "imgbtn" :
             mode === 'docs' ?  "docsbtn" :
-            "excelbtn").style.display = "none"; 
+            'excelbtn' && 'excelbtn2').style.display = "none"; 
         document.getElementById(
             mode === 'merge' ? "file-select-btn" : 
             mode === 'split' ? "file-select-splitbtn" :
@@ -167,6 +169,7 @@ function displaySelectedFiles(files, mode) {
             "file-select-excelbtn").style.display = "block"; 
     }
 }
+
 
 //<============================================================================================================================>
 
