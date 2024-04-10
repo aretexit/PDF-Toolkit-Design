@@ -94,4 +94,14 @@ Daily Update:
 ![Alt text](https://github.com/KuroKami2023/PDF-Toolkit-Design/blob/main/IMAGES/Design%20p2.png?raw=true)
 ![Alt text](https://github.com/KuroKami2023/PDF-Toolkit-Design/blob/main/IMAGES/Design%20p3.png?raw=true)
 ![Alt text](https://github.com/KuroKami2023/PDF-Toolkit-Design/blob/main/IMAGES/Design%20p5.png?raw=true)
+
+○ `04/09/2024`
+- Fixed bugs and design errors/issues
+- Meeting with ma'am miki.
+- Integrating PDF to Excel Backend to Frontend without using renderer (Failed).
+- Managed to Integrate PDF to Excel Backend to Frontend
+- Added working loading animation during conversion
+- Found 2 bugs
+    - Cant close div when clicked back button after conversion.
+    - Select PDF files button is missing when input-select is cancelled.  
     
