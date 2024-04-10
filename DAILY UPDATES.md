@@ -103,5 +103,6 @@ Daily Update:
 - Added working loading animation during conversion
 - Found 2 bugs
     - Cant close div when clicked back button after conversion.
-    - Select PDF files button is missing when input-select is cancelled.  
+    - Select PDF files button is missing when input-select is cancelled.
+- Added function for PDF to Excel Conversion (Single Sheet or Multiple Sheets). 
     
