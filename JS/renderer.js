@@ -2,6 +2,7 @@ const { ipcRenderer } = require('electron');
 
 const loader = document.getElementById('loader');
 const convertBtn = document.getElementById('excelbtn');
+const convertBtn2 = document.getElementById('excelbtn2');
 const fileExcel = document.getElementById('selected-file-info-excel');
 const backbtnExcel = document.getElementById('backbtn-excel');
 const selectBtnExcel = document.getElementById('file-select-excelbtn');
@@ -18,7 +19,26 @@ convertBtn.addEventListener('click', async () => {
         convertBtn.style.display = 'none'; 
         fileInput.disabled = true;
         convertBtn.disabled = true;
+        convertBtn2.style.display = 'none'; 
+        convertBtn2.disabled = true;
         ipcRenderer.send('start-conversion', { filePath: file.path, outputDir, fileName: file.name }); 
+    }
+});
+
+convertBtn2.addEventListener('click', async () => {
+    const fileInput = document.getElementById('file-input-excel');
+    const file = fileInput.files[0];
+    const outputDir = "./";
+
+    if (file && !convertBtn2.disabled) {
+        fileExcel.style.display = 'none'; 
+        loader.style.display = 'block';
+        convertBtn2.style.display = 'none'; 
+        fileInput.disabled = true;
+        convertBtn2.disabled = true; 
+        convertBtn.style.display = 'none'; 
+        convertBtn.disabled = true;
+        ipcRenderer.send('start-conversion2', { filePath: file.path, outputDir, fileName: file.name }); 
     }
 });
 
@@ -39,9 +59,11 @@ ipcRenderer.on('conversion-complete', async (event, convertedFilePath) => {
     
             const fileInput = document.getElementById('file-input-excel');
             const convertBtn = document.getElementById('excelbtn');
+            const convertBtn2 = document.getElementById('excelbtn2');
     
             fileInput.disabled = false;
             convertBtn.disabled = false;
+            convertBtn2.disabled = false;
     
             if (response && response.filePath) {
                 const { filePath } = response;
@@ -63,8 +85,9 @@ ipcRenderer.on('conversion-complete', async (event, convertedFilePath) => {
             });
             const fileInput = document.getElementById('file-input-excel');
             const convertBtn = document.getElementById('excelbtn');
+            const convertBtn2 = document.getElementById('excelbtn2');
             fileInput.disabled = false;
-            convertBtn.disabled = false;
+            convertBtn2.disabled = false;
         }
         document.getElementById("file-input-excel").value = "";
         document.getElementById("file-input-excel").disabled = false; 
@@ -80,5 +103,6 @@ backbtnExcel.addEventListener('click', () => {
     document.getElementById("file-input-excel").disabled = false; 
     document.getElementById("file-input-excel").value = ""; 
     convertBtn.disabled = false;
+    convertBtn2.disabled = false;
 });
 

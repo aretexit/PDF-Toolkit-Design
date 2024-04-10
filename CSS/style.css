@@ -334,8 +334,7 @@ body {
 .mergebtn, 
 .splitbtn, 
 .imgbtn,
-.docsbtn,
-.excelbtn {
+.docsbtn {
     padding: 8px 10px;
     gap: 4px;
     margin: 0 auto;
@@ -351,6 +350,37 @@ body {
     cursor: pointer;
 }
 
+.excelbtn {
+    padding: 8px 10px;
+    gap: 4px;
+    width: 171px;
+    height: 40px;
+    background: #EA2929;
+    border-radius: 8px;
+    border-style: none;
+    position: absolute;
+    margin-left: 14.7rem;
+    margin-top: 10rem;
+    color: white;
+    cursor: pointer;
+}
+
+.excelbtn2 {
+    padding: 8px 10px;
+    gap: 4px;
+    margin: 0 auto;
+    width: 171px;
+    height: 40px;
+    background: #EA2929;
+    border-radius: 8px;
+    border-style: none;
+    position: absolute;
+    margin-left: 14.7rem;
+    margin-top: 10rem;
+    color: white;
+    cursor: pointer;
+}
+
 .splitbtn,
 .imgbtn,
 .docsbtn,
@@ -360,9 +390,12 @@ body {
 
 .selected-file-split, 
 .selected-file-img,
-.selected-file-docs,
-.selected-file-excel {
+.selected-file-docs {
     margin-top: 4rem;
+}
+
+.selected-file-excel {
+    margin-top: 2rem;
 }
 
 .aretex {
