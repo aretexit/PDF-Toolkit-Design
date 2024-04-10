@@ -46,13 +46,14 @@ downloadbtn.addEventListener('click', async () => {
     a.download = 'output.pdf';
     a.click();
     URL.revokeObjectURL(a.href); 
+    document.getElementById("file-input").value = "";
 });
 
 backbtn.addEventListener('click', () => {
     downloadbtn.style.display = 'none';
     backbtn.style.display = 'none';
     selectbtn.style.display = 'block';
-
+    document.getElementById("file-input").value = "";
 })
 
 

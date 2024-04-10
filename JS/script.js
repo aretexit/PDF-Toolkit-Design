@@ -1,10 +1,10 @@
 //<==================================================ANIMATIONS=====================================================================>
 function toggleSize(element) {
-    var selectedFiles = document.querySelectorAll('.selected-file');
-    var selectedFilesSplit = document.querySelectorAll('.selected-file-split');
-    var selectedFilesImg = document.querySelectorAll('.selected-file-img');
-    var selectedFilesDocs = document.querySelectorAll('.selected-file-docs');
-    var selectedFilesExcel = document.querySelectorAll('.selected-file-excel');
+    var selectedFiles = element.querySelectorAll('.selected-file');
+    var selectedFilesSplit = element.querySelectorAll('.selected-file-split');
+    var selectedFilesImg = element.querySelectorAll('.selected-file-img');
+    var selectedFilesDocs = element.querySelectorAll('.selected-file-docs');
+    var selectedFilesExcel = element.querySelectorAll('.selected-file-excel');
     if (selectedFiles.length > 0 ||
         selectedFilesSplit.length > 0 ||
         selectedFilesImg.length > 0 ||
@@ -174,6 +174,7 @@ function displaySelectedFiles(files, mode) {
 
 var btnselect = document.getElementById('file-select-btn');
 var btnmerge = document.getElementById('mergebtn');
+var selectedFilesContainer = document.getElementById('selected-file-info');
 
 document.getElementById("file-select-btn").addEventListener("click", function() {
     document.getElementById("file-input").click();
@@ -188,7 +189,7 @@ document.getElementById("file-input").addEventListener("change", function(event)
     }
     displaySelectedFiles(event.target.files, 'merge');
 });
-   
+
 document.getElementById("selected-file-info").addEventListener("click", function(event) {
     if (event.target.classList.contains("remove-file-btn")) {
         var fileEntry = event.target.parentElement;
@@ -198,9 +199,12 @@ document.getElementById("selected-file-info").addEventListener("click", function
             document.getElementById("selected-file-info").style.display = "none";
             document.getElementById("mergebtn").style.display = "none";
             document.getElementById("file-select-btn").style.display = "block";
+            document.getElementById("file-input").value = "";
+            document.getElementById("file-input-excel").value = "";
         }
     }
 });
+
 
 //<============================================================================================================================>
 
@@ -231,6 +235,7 @@ document.getElementById("selected-file-info-split").addEventListener("click", fu
             document.getElementById("selected-file-info-split").style.display = "none";
             document.getElementById("splitbtn").style.display = "none";
             document.getElementById("file-select-splitbtn").style.display = "block";
+            document.getElementById("file-input-split").value = "";
         }
     }
 });
@@ -265,6 +270,7 @@ document.getElementById("selected-file-info-img").addEventListener("click", func
             document.getElementById("selected-file-info-img").style.display = "none";
             document.getElementById("imgbtn").style.display = "none";
             document.getElementById("file-select-imgbtn").style.display = "block";
+            document.getElementById("file-input-img").value = "";
         }
     }
 });
@@ -298,6 +304,7 @@ document.getElementById("selected-file-info-docs").addEventListener("click", fun
             document.getElementById("selected-file-info-docs").style.display = "none";
             document.getElementById("docsbtn").style.display = "none";
             document.getElementById("file-select-docsbtn").style.display = "block";
+            document.getElementById("file-input-docs").value = "";
         }
     }
 });
@@ -331,6 +338,7 @@ document.getElementById("selected-file-info-excel").addEventListener("click", fu
             document.getElementById("selected-file-info-excel").style.display = "none";
             document.getElementById("excelbtn").style.display = "none";
             document.getElementById("file-select-excelbtn").style.display = "block";
+            document.getElementById("file-input-excel").value = "";
         }
     }
 });
