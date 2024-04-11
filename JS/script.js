@@ -145,13 +145,16 @@ function displaySelectedFiles(files, mode) {
             selectedFileContainer.appendChild(fileEntry);
         }
         selectedFileContainer.style.display = "block";
-        
+        document.getElementById(
+            mode === 'merge' ? 'mergebtn' : 
+            mode === 'split' ? 'splitbtn' :
+            mode === 'img' ?    'imgbtn' :
+            mode === 'docs' ? "docsbtn" :
+            "excelbtn" &&  "excelbtn2").style.display = "block"; 
         if (mode === 'excel') {
             document.getElementById('excelbtn').style.display = "block"; 
             document.getElementById('excelbtn2').style.display = "block"; 
-        } else {
-            document.getElementById('excelbtn').style.display = "none"; 
-            document.getElementById('excelbtn2').style.display = "none"; 
+            document.getElementById('toggle').style.display = "block"; 
         }
     } else {
         selectedFileContainer.style.display = "none"; 
@@ -159,8 +162,13 @@ function displaySelectedFiles(files, mode) {
             mode === 'merge' ? "mergebtn" : 
             mode === 'split' ? "splitbtn" :
             mode === 'img' ? "imgbtn" :
-            mode === 'docs' ?  "docsbtn" :
-            'excelbtn' && 'excelbtn2').style.display = "none"; 
+            mode === 'docs' ? "docsbtn" :
+            "excelbtn" &&  "excelbtn2").style.display = "none"; 
+            if (mode === 'excel') {
+                document.getElementById('excelbtn').style.display = "none"; 
+                document.getElementById('excelbtn2').style.display = "none"; 
+                document.getElementById('toggle').style.display = "none"; 
+            }
         document.getElementById(
             mode === 'merge' ? "file-select-btn" : 
             mode === 'split' ? "file-select-splitbtn" :
