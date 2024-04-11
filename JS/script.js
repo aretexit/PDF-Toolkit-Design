@@ -189,14 +189,14 @@ var selectedFilesContainer = document.getElementById('selected-file-info');
 
 document.getElementById("file-select-btn").addEventListener("click", function() {
     document.getElementById("file-input").click();
-    btnselect.style.display = 'none';
 });
 
 document.getElementById("file-input").addEventListener("change", function(event) {
     if (event.target.files.length === 0) {
         document.getElementById("file-select-btn").style.display = "block";
+        document.getElementById("selected-file-info").style.display = "block";
     } else {
-        document.getElementById('mergeFiles').style.display = "block";
+        document.getElementById("file-select-btn").style.display = "none";
     }
     displaySelectedFiles(event.target.files, 'merge');
 });
@@ -226,12 +226,14 @@ var btnsplit = document.getElementById('splitbtn');
 
 document.getElementById("file-select-splitbtn").addEventListener("click", function() {
     document.getElementById("file-input-split").click();
-    splitbtnselect.style.display = 'none';
 });
 
 document.getElementById("file-input-split").addEventListener("change", function(event) {
-    if (event.target.files.length === 0) {
+    if (event.target.files.length > 0) {
+        document.getElementById("file-select-splitbtn").style.display = "none";
+    } else {
         document.getElementById("file-select-splitbtn").style.display = "block";
+        document.getElementById("selected-file-info-split").style.display = "block";
     }
     displaySelectedFiles(event.target.files, 'split');
 });
@@ -329,12 +331,14 @@ var btnexcel = document.getElementById('excelbtn');
 
 document.getElementById("file-select-excelbtn").addEventListener("click", function() {
     document.getElementById("file-input-excel").click();
-    excelbtnselect.style.display = 'none';
 });
 
 document.getElementById("file-input-excel").addEventListener("change", function(event) {
-    if (event.target.files.length === 0) {
+    if (event.target.files.length > 0) {
+        document.getElementById("file-select-excelbtn").style.display = "none";
+    } else {
         document.getElementById("file-select-excelbtn").style.display = "block";
+        document.getElementById("selected-file-info-excel").style.display = "block";
     }
     displaySelectedFiles(event.target.files, 'excel');
 });

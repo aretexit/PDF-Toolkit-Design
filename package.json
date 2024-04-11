@@ -17,7 +17,9 @@
     "convertapi": "^1.14.0",
     "convertapi-js": "^1.0.8",
     "electron-packager": "^17.1.2",
+    "image-size": "^1.1.1",
     "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.15.0",
     "sweetalert2": "^11.10.7"
   }
 }
