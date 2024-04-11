@@ -113,4 +113,6 @@ Daily Update:
   - Fixed Split PDF bug.
   - Fixed cancel select files bug.
   - Fixed back button bug.
+  - Integrated Image to PDF Backend to the new Frontend.
+  - Tried to package and build app and found bug on the PDF to Excel.
     
