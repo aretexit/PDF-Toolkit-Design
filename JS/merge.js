@@ -54,6 +54,7 @@ backbtn.addEventListener('click', () => {
     backbtn.style.display = 'none';
     selectbtn.style.display = 'block';
     document.getElementById("file-input").value = "";
+    document.getElementById("selected-file-info").innerHTML = "";
 })
 
 

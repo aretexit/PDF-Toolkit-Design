@@ -1,10 +1,7 @@
-const fs = require('fs-extra');
-const { PDFDocument } = require('pdf-lib');
-const { ipcRenderer } = require('electron');
-const Swal = require('sweetalert2');
+const fse = require('fs-extra');
 
 async function splitPDF(inputPDFPath, outputFolder, inputFileName) {
-    const inputFile = await fs.readFile(inputPDFPath);
+    const inputFile = await fse.readFile(inputPDFPath);
     const pdfDoc = await PDFDocument.load(inputFile);
     
     for (let pageNumber = 0; pageNumber < pdfDoc.getPageCount(); pageNumber++) {
@@ -13,9 +10,8 @@ async function splitPDF(inputPDFPath, outputFolder, inputFileName) {
         pdfWriter.addPage(copiedPage);
 
         const outputPagePath = `${outputFolder}/${inputFileName}_page_${pageNumber + 1}.pdf`;
-        await fs.ensureDir(outputFolder);
-        await fs.writeFile(outputPagePath, await pdfWriter.save());
-        console.log(`Page ${pageNumber + 1} extracted and saved as ${outputPagePath}`);
+        await fse.ensureDir(outputFolder);
+        await fse.writeFile(outputPagePath, await pdfWriter.save());
     }
 
     Swal.fire({
@@ -27,13 +23,15 @@ async function splitPDF(inputPDFPath, outputFolder, inputFileName) {
       });
 }
 
-document.getElementById('convert-btn').addEventListener('click', async () => {
-    const inputPDF = document.getElementById('pdf-file').files[0];
-
+document.getElementById('splitbtn').addEventListener('click', async () => {
+    const inputPDF = document.getElementById('file-input-split').files[0];
     if (inputPDF) {
         const inputPDFPath = inputPDF.path;
 
-        ipcRenderer.send('open-save-dialog', { defaultPath: 'output_folder' });
+        document.getElementById('dbtn-split').style.display = 'block';
+        document.getElementById('backbtn-split').style.display = 'block';
+        document.getElementById('selected-file-info-split').style.display = 'none';
+        document.getElementById('splitbtn').style.display = 'none';
     } else {
         Swal.fire({
             position: "center",
@@ -45,22 +43,35 @@ document.getElementById('convert-btn').addEventListener('click', async () => {
     }
 });
 
-ipcRenderer.on('selected-directory', async (event, filePath) => {
-    const outputFolder = filePath;
+document.getElementById('dbtn-split').addEventListener('click', () => {
+    ipcRenderer.send('open-save-dialog', { defaultPath: 'output_folder' });
+    ipcRenderer.on('selected-directory', async (event, filePath) => {
+        const outputFolder = filePath;
+    
+        try {
+            const inputPDF = document.getElementById('file-input-split').files[0];
+            const inputPDFPath = inputPDF.path;
+            console.log(inputPDFPath);
+    
+            const inputFileName = inputPDF.name.replace(/\.[^/.]+$/, ''); 
+            await splitPDF(inputPDFPath, outputFolder, inputFileName);
+            console.log("Splitting completed successfully.");
+        } catch (error) {
+            console.error("Error:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An error occurred while splitting the PDF.',
+            });
+        }
+    });
+    
+})
 
-    try {
-        const inputPDF = document.getElementById('pdf-file').files[0];
-        const inputPDFPath = inputPDF.path;
-
-        const inputFileName = inputPDF.name.replace(/\.[^/.]+$/, ''); 
-        await splitPDF(inputPDFPath, outputFolder, inputFileName);
-        console.log("Splitting completed successfully.");
-    } catch (error) {
-        console.error("Error:", error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'An error occurred while splitting the PDF.',
-        });
-    }
-});
+document.getElementById('backbtn-split').addEventListener('click', () => {
+    document.getElementById("file-input-split").value = "";
+    document.getElementById("selected-file-info-split").innerHTML = "";
+    document.getElementById('dbtn-split').style.display = 'none';
+    document.getElementById('backbtn-split').style.display = 'none';
+    document.getElementById('file-select-splitbtn').style.display = 'block';
+})

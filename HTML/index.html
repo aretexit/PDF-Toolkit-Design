@@ -101,6 +101,9 @@
         </div>
         </div>
         <button style="display: none;" class="splitbtn" id="splitbtn">Split PDF <i class="fa-solid fa-arrow-right"></i></button>
+        <button style="display: none;" class="download" id="dbtn-split"><i class="fa-solid fa-download"></i> Download PDF</i></button>
+        <br>
+        <a class="backbtn" style="display: none;" id="backbtn-split"><i class="fa-solid fa-circle-arrow-left" ></i>Back to Split PDF</a>
     </div>
 
     <img src="../IMAGES/aretex.png" alt="ARETEX" class="aretex">
@@ -136,12 +139,15 @@
         </label>
         </div>
         <button id="file-select-imgbtn" class="btnselect" style="display: none;">Select Image file</button>
-        <input type="file" id="file-input-img" style="display: none;" accept="image/*" required>
+        <input type="file" id="file-input-img" style="display: none;" accept="image/jpeg, image/png, image/bmp" required>
         <div class="files-container-img">
         <div id="selected-file-info-img" style="display: none;">
         </div>
         </div>
         <button style="display: none;" class="imgbtn" id="imgbtn">Convert <i class="fa-solid fa-arrow-right"></i></button>
+        <button style="display: none;" class="download" id="dbtn-img"><i class="fa-solid fa-download"></i> Download PDF</i></button>
+        <br>
+        <a class="backbtn" style="display: none;" id="backbtn-img"><i class="fa-solid fa-circle-arrow-left" ></i>Back to Split PDF</a>
     </div>
 
     <!-------------------------------------------------------------------------------------------->
@@ -240,4 +246,6 @@
 <script src="../JS/script.js" defer></script>
 <script src="../JS/merge.js" defer></script>
 <script src="../JS/excel.js" defer></script>
+<script src="../JS/split.js" defer></script>
+<script src="../JS/image.js" defer></script>
 </html>
