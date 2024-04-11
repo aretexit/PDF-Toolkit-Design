@@ -109,5 +109,8 @@ Daily Update:
 ○ `04/11/2024`
   - Added Checkbox for Include Formatting.
   - Added in and out functions for the toggle.
-  - 
+  - Successfully integrated Split PDF Backend to the new Frontend.
+  - Fixed Split PDF bug.
+  - Fixed cancel select files bug.
+  - Fixed back button bug.
     
