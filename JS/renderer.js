@@ -7,6 +7,8 @@ const fileExcel = document.getElementById('selected-file-info-excel');
 const backbtnExcel = document.getElementById('backbtn-excel');
 const selectBtnExcel = document.getElementById('file-select-excelbtn');
 const dbtn = document.getElementById('download-excel');
+const checkbox = document.getElementById("_checkbox-26");
+const toggle = document.getElementById("toggle");
 
 convertBtn.addEventListener('click', async () => {
     const fileInput = document.getElementById('file-input-excel');
@@ -21,7 +23,16 @@ convertBtn.addEventListener('click', async () => {
         convertBtn.disabled = true;
         convertBtn2.style.display = 'none'; 
         convertBtn2.disabled = true;
-        ipcRenderer.send('start-conversion', { filePath: file.path, outputDir, fileName: file.name }); 
+        toggle.disabled = true;
+        toggle.style.display = 'none';
+
+
+        if (checkbox.checked) {
+            convertBtn2.style.display = 'none';
+            ipcRenderer.send('start-conversion-formatting', { filePath: file.path, outputDir, fileName: file.name }); 
+        } else {
+            ipcRenderer.send('start-conversion', { filePath: file.path, outputDir, fileName: file.name }); 
+        }
     }
 });
 
@@ -38,6 +49,9 @@ convertBtn2.addEventListener('click', async () => {
         convertBtn2.disabled = true; 
         convertBtn.style.display = 'none'; 
         convertBtn.disabled = true;
+        toggle.disabled = true;
+        toggle.style.display = 'none';
+
         ipcRenderer.send('start-conversion2', { filePath: file.path, outputDir, fileName: file.name }); 
     }
 });
@@ -106,3 +120,17 @@ backbtnExcel.addEventListener('click', () => {
     convertBtn2.disabled = false;
 });
 
+function toggleCode() {
+    var checkbox = document.getElementById("_checkbox-26");
+    if (checkbox.checked) {
+        convertBtn2.style.display = 'none';
+        Swal.fire({
+        position: "center",
+        icon: "info",
+        title: "Please take note that Include Formatting only works on single sheet.",
+        showConfirmButton: true,
+        });
+    } else {
+        convertBtn2.style.display = 'block';
+    }
+}

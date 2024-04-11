@@ -6,7 +6,7 @@ async function convertToExcelWithOCR(inputPath, outputPath) {
     try {
         await convertapi.convert('xlsx', {
             File: inputPath,
-            IncludeFormatting: 'false',
+            IncludeFormatting: 'true',
             EnableOCR: 'true',
             SingleSheet: 'true',
         }).then(function (result) {

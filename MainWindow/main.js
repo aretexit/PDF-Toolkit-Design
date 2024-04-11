@@ -2,6 +2,7 @@ const {app, BrowserWindow, ipcMain, dialog } = require('electron/main')
 const path = require('node:path')
 const excel = require('../JS/excel')
 const excel2 = require('../JS/excel-multiple')
+const excel3 = require('../JS/toggle')
 const fs = require('fs');
 
 function createWindow () {
@@ -76,6 +77,15 @@ ipcMain.on('start-conversion', async (event, { filePath, outputDir }) => {
 ipcMain.on('start-conversion2', async (event, { filePath, outputDir }) => { 
   try {
     const convertedFilePath = await excel2.main(filePath, outputDir); 
+    event.reply('conversion-complete', convertedFilePath);
+  } catch (error) {
+  }
+  
+});
+
+ipcMain.on('start-conversion-formatting', async (event, { filePath, outputDir }) => { 
+  try {
+    const convertedFilePath = await excel3.main(filePath, outputDir); 
     event.reply('conversion-complete', convertedFilePath);
   } catch (error) {
   }

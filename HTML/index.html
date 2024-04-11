@@ -8,6 +8,7 @@
     <title>Aretex PDF Toolkit</title>
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/loader.css">
+    <link rel="stylesheet" href="../CSS/toggle.css">
     <link href="../ICONS/css/fontawesome.css" rel="stylesheet" />
     <link href="../ICONS/css/brands.css" rel="stylesheet" />
     <link href="../ICONS/css/solid.css" rel="stylesheet" />
@@ -210,16 +211,25 @@
         </div>
         </div>
         <button style="display: none; margin-top: 7rem;" class="excelbtn" id="excelbtn">
-                Convert single sheet<i class="fa-solid fa-arrow-right"></i>
+                Convert single sheet <i class="fa-solid fa-arrow-right"></i>
         </button>
         <button style="display: none;" class="excelbtn2" id="excelbtn2">
-            Convert multiple sheets<i class="fa-solid fa-arrow-right"></i>
+            Convert multiple sheets <i class="fa-solid fa-arrow-right"></i>
     </button>
         <button style="display: none;" class="download" id="download-excel"><i class="fa-solid fa-download"></i> Download PDF</i></button>
         <br>
         <a class="backbtn" style="display: none;" id="backbtn-excel"><i class="fa-solid fa-circle-arrow-left" ></i>Back to PDF to Excel</a>
         <span class="loader" style="display: none;" id="loader">
         </span>
+        <div class="toggle" style="display: none;" id="toggle">
+            <label for="checkbox-wrapper">Include Formatting</label>
+            <div class="checkbox-wrapper">
+                <input id="_checkbox-26" type="checkbox" onclick="toggleCode()">
+                <label for="_checkbox-26">
+                  <div class="tick_mark"></div>
+                </label>
+              </div>  
+        </div>
     </div>
     </div>
 
