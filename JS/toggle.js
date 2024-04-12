@@ -6,7 +6,7 @@ const path = require('path');
 async function convertToExcelWithOCR(inputPath) {
     try {
         const inputFileName = path.basename(inputPath);
-        const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.xlsx'; // Remove extension and add .xlsx
+        const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.xlsx';
         const outputDir = path.dirname(inputPath);
         const outputPath = path.join(outputDir, outputFileName);
 
