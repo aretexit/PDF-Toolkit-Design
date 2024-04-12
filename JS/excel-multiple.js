@@ -15,6 +15,7 @@ async function convertToExcelWithOCR(inputPath) {
             IncludeFormatting: 'false',
             EnableOCR: 'true',
             SingleSheet: 'false',
+            StoreFile: 'false',
         });
 
         await result.saveFiles(outputPath);
