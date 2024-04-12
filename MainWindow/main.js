@@ -3,6 +3,7 @@ const path = require('node:path')
 const excel = require('../JS/excel')
 const excel2 = require('../JS/excel-multiple')
 const excel3 = require('../JS/toggle')
+const docx = require('../JS/docs')
 const fs = require('fs');
 
 function createWindow () {
@@ -95,7 +96,7 @@ ipcMain.on('start-conversion-formatting', async (event, { filePath, outputDir })
 
 //<=====================================================================================================>
 
-//<=========================================PDF2EXCEL====================================================>
+//<=========================================SPLIT PDF====================================================>
 
 ipcMain.on('open-save-dialog', async (event, args) => {
   const { filePaths } = await dialog.showOpenDialog({
@@ -104,6 +105,45 @@ ipcMain.on('open-save-dialog', async (event, args) => {
     properties: ['openDirectory']
   });
   event.sender.send('selected-directory', filePaths[0]);
+});
+
+//<=====================================================================================================>
+
+
+//<=========================================PDF2DOCS====================================================>
+
+ipcMain.handle('save-docx', async (event, convertedFilePath) => {
+  const docxBuffer = fs.readFileSync(convertedFilePath);
+
+  const pdfFileName = path.basename(convertedFilePath, path.extname(convertedFilePath));
+  const defaultPath = path.dirname(convertedFilePath);
+
+  const { filePath, canceled } = await dialog.showSaveDialog({
+    defaultPath: path.join(defaultPath, pdfFileName),
+    filters: [{ name: 'Docx Files', extensions: ['docx'] }]
+  });
+
+  if (!canceled && filePath) {
+    try {
+      fs.writeFileSync(filePath, docxBuffer);
+      fs.unlinkSync(convertedFilePath);
+      return { filePath };
+    } catch (error) {
+      console.error('Error saving Docs file:', error);
+      return { error: 'Error saving Docs file' };
+    }
+  } else {
+    console.log('Saving process canceled');
+    return null;
+  }
+});
+
+ipcMain.on('docx-conversion', async (event, { filePath, outputDir }) => { 
+  try {
+    const convertedFilePath = await docx.mainDocx(filePath, outputDir); 
+    event.reply('docx-complete', convertedFilePath);
+  } catch (error) {
+  }
 });
 
 //<=====================================================================================================>
