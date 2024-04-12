@@ -55,22 +55,25 @@ document.getElementById('imgbtn').addEventListener('click', () => {
         });
 });
 
-document.getElementById('dbtn-img').addEventListener('click',() => {
+document.getElementById('dbtn-img').addEventListener('click', () => {
     const imageInput = document.getElementById('file-input-img');
     const imageFile = imageInput.files[0];
 
     if (imageFile) {
         const reader = new FileReader();
-        reader.onload = async function(event) {
+        reader.onload = async function (event) {
             const arrayBuffer = event.target.result;
-            const buffer = Buffer.from(arrayBuffer); 
+            const buffer = Buffer.from(arrayBuffer);
 
             const pdfData = await imageToPDF(buffer);
 
             const blob = new Blob([pdfData], { type: 'application/pdf' });
             const link = document.createElement('a');
+
+            const fileName = imageFile.name;
+            link.download = fileName.substring(0, fileName.lastIndexOf('.')) + '.pdf';
+
             link.href = URL.createObjectURL(blob);
-            link.download = 'output.pdf';
             link.click();
         };
 
@@ -80,8 +83,10 @@ document.getElementById('dbtn-img').addEventListener('click',() => {
     }
 })
 
+
 document.getElementById('backbtn-img').addEventListener('click', () => {
-    document.getElementById("selected-file-info-img").innerHTML = "";
     document.getElementById('dbtn-img').style.display = 'none';
     document.getElementById('backbtn-img').style.display = 'none';
+    document.getElementById("selected-file-info-img").innerHTML = "";
+    document.getElementById("file-input-img").value = ""; 
 })

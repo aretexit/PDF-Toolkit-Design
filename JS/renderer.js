@@ -56,7 +56,10 @@ convertBtn2.addEventListener('click', async () => {
     }
 });
 
-ipcRenderer.on('conversion-complete', async (event, convertedFilePath) => {
+let convertedFilePath; 
+
+ipcRenderer.on('conversion-complete', async (event, path) => {
+    convertedFilePath = path; 
     loader.style.display = 'none';
     dbtn.style.display = 'block';
     dbtn.disabled = false;
@@ -68,55 +71,56 @@ ipcRenderer.on('conversion-complete', async (event, convertedFilePath) => {
         showConfirmButton: false,
         timer: 1500
     });
-
-    dbtn.addEventListener('click', async () => {
-
-            const response = await ipcRenderer.invoke('save-excel', convertedFilePath);
-            dbtn.disabled = true;
-            const fileInput = document.getElementById('file-input-excel');
-            const convertBtn = document.getElementById('excelbtn');
-            const convertBtn2 = document.getElementById('excelbtn2');
-    
-            fileInput.disabled = false;
-            convertBtn.disabled = false;
-            convertBtn2.disabled = false;
-    
-            if (response && response.filePath) {
-                const { filePath } = response;
-                fs.rename(convertedFilePath, filePath, (err) => {
-                    if (err) {
-                        dbtn.disabled = true;
-                        dbtn.innerHTML = `<i class="fa-solid fa-download"></i> PDF Saved`;
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "File Saved Successfully",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    } else {
-                        dbtn.disabled = true;
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "File Saved Successfully",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        console.log('File moved successfully');
-                    }
-                });
-            } else {
-            
-                const fileInput = document.getElementById('file-input-excel');
-                const convertBtn = document.getElementById('excelbtn');
-                const convertBtn2 = document.getElementById('excelbtn2');
-                fileInput.disabled = false;
-                convertBtn2.disabled = false;
-            }
-    });
     document.getElementById("file-input-excel").value = "";
     document.getElementById("file-input-excel").disabled = false; 
+});
+
+dbtn.addEventListener('click', async () => {
+    if (!convertedFilePath) return; 
+    const response = await ipcRenderer.invoke('save-excel', convertedFilePath);
+    dbtn.disabled = true;
+    const fileInput = document.getElementById('file-input-excel');
+    const convertBtn = document.getElementById('excelbtn');
+    const convertBtn2 = document.getElementById('excelbtn2');
+
+    fileInput.disabled = false;
+    convertBtn.disabled = false;
+    convertBtn2.disabled = false;
+
+    if (response && response.filePath) {
+        const { filePath } = response;
+        fs.rename(convertedFilePath, filePath, (err) => {
+            if (err) {
+                dbtn.disabled = true;
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "File Saved Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                document.getElementById("file-input-excel").value = ""; 
+            } else {
+                dbtn.disabled = true;
+                document.getElementById("file-input-excel").value = ""; 
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "File Saved Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                console.log('File moved successfully');
+            }
+        });
+    } else {
+        // Handle the case when response or response.filePath is falsy
+        const fileInput = document.getElementById('file-input-excel');
+        const convertBtn = document.getElementById('excelbtn');
+        const convertBtn2 = document.getElementById('excelbtn2');
+        fileInput.disabled = false;
+        convertBtn2.disabled = false;
+    }
 });
 
 backbtnExcel.addEventListener('click', () => {

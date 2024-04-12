@@ -43,7 +43,7 @@ downloadbtn.addEventListener('click', async () => {
 
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'output.pdf';
+    a.download = 'Merge.pdf';
     a.click();
     URL.revokeObjectURL(a.href); 
     document.getElementById("file-input").value = "";
