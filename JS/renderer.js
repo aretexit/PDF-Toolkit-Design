@@ -59,6 +59,7 @@ convertBtn2.addEventListener('click', async () => {
 ipcRenderer.on('conversion-complete', async (event, convertedFilePath) => {
     loader.style.display = 'none';
     dbtn.style.display = 'block';
+    dbtn.disabled = false;
     backbtnExcel.style.display = 'block';
     Swal.fire({
         position: "center",
@@ -67,10 +68,11 @@ ipcRenderer.on('conversion-complete', async (event, convertedFilePath) => {
         showConfirmButton: false,
         timer: 1500
     });
+
     dbtn.addEventListener('click', async () => {
-        try {
+
             const response = await ipcRenderer.invoke('save-excel', convertedFilePath);
-    
+            dbtn.disabled = true;
             const fileInput = document.getElementById('file-input-excel');
             const convertBtn = document.getElementById('excelbtn');
             const convertBtn2 = document.getElementById('excelbtn2');
@@ -83,28 +85,22 @@ ipcRenderer.on('conversion-complete', async (event, convertedFilePath) => {
                 const { filePath } = response;
                 fs.rename(convertedFilePath, filePath, (err) => {
                     if (err) {
+                        dbtn.disabled = false;
+                        dbtn.innerHTML = `<i class="fa-solid fa-download"></i> Download PDF`;
                         console.error('Error moving file:', err);
                     } else {
+                        dbtn.disabled = true;
                         console.log('File moved successfully');
                     }
                 });
             } else {
+            
+                const fileInput = document.getElementById('file-input-excel');
+                const convertBtn = document.getElementById('excelbtn');
+                const convertBtn2 = document.getElementById('excelbtn2');
+                fileInput.disabled = false;
+                convertBtn2.disabled = false;
             }
-        } catch (error) {
-            console.error('Error during conversion:', error);
-            await Swal.fire({
-                icon: 'error',
-                title: 'Conversion Failed',
-                text: 'Error converting PDF to Excel. Some Scanned PDF is not working.'
-            });
-            const fileInput = document.getElementById('file-input-excel');
-            const convertBtn = document.getElementById('excelbtn');
-            const convertBtn2 = document.getElementById('excelbtn2');
-            fileInput.disabled = false;
-            convertBtn2.disabled = false;
-        }
-        document.getElementById("file-input-excel").value = "";
-        document.getElementById("file-input-excel").disabled = false; 
     });
     document.getElementById("file-input-excel").value = "";
     document.getElementById("file-input-excel").disabled = false; 
@@ -118,6 +114,7 @@ backbtnExcel.addEventListener('click', () => {
     document.getElementById("file-input-excel").value = ""; 
     convertBtn.disabled = false;
     convertBtn2.disabled = false;
+    document.getElementById("selected-file-info-excel").innerHTML = "";
 });
 
 function toggleCode() {
