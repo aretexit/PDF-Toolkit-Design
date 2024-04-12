@@ -115,4 +115,11 @@ Daily Update:
   - Fixed back button bug.
   - Integrated Image to PDF Backend to the new Frontend.
   - Tried to package and build app and found bug on the PDF to Excel.
-    
+
+○ `04/12/2024`
+  - Fixed Bugs on PDF to Excel after Built/Packaged.
+  - Added Success prompts.
+  - Added back Split PDF download.
+  - Rebuilt the app to see if theres an error.
+  - Added PDF to Docs Backend to the new Frontend.
+  - Fixed bug on stacking (save as dialog box) on PDF to Excel and PDF to Word.
