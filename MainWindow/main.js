@@ -56,7 +56,6 @@ ipcMain.handle('save-excel', async (event, convertedFilePath) => {
   if (!canceled && filePath) {
     try {
       fs.writeFileSync(filePath, excelBuffer);
-      // Clear the converted file after successful saving
       fs.unlinkSync(convertedFilePath);
       return { filePath };
     } catch (error) {
