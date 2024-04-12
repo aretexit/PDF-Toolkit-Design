@@ -55,7 +55,12 @@ document.getElementById('dbtn-split').addEventListener('click', () => {
     
             const inputFileName = inputPDF.name.replace(/\.[^/.]+$/, ''); 
             await splitPDF(inputPDFPath, outputFolder, inputFileName);
-            console.log("Splitting completed successfully.");
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Successfully saved " + inputFileName,
+                showConfirmButton: true,
+                });
         } catch (error) {
             console.error("Error:", error);
             Swal.fire({

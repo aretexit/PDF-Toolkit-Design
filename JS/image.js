@@ -47,6 +47,12 @@ document.getElementById('imgbtn').addEventListener('click', () => {
     document.getElementById('backbtn-img').style.display = 'block';
     document.getElementById('imgbtn').style.display = 'none';
     document.getElementById('selected-file-info-img').style.display = 'none';
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Image converted successfully",
+        showConfirmButton: true,
+        });
 });
 
 document.getElementById('dbtn-img').addEventListener('click',() => {

@@ -44,24 +44,25 @@ ipcMain.handle('save-excel', async (event, convertedFilePath) => {
   const excelBuffer = fs.readFileSync(convertedFilePath);
 
   const pdfFileName = path.basename(convertedFilePath, path.extname(convertedFilePath));
-  const defaultPath = path.join(path.dirname(convertedFilePath), '');
+  const defaultPath = path.dirname(convertedFilePath);
 
   const { filePath, canceled } = await dialog.showSaveDialog({
     defaultPath: path.join(defaultPath, pdfFileName),
-      filters: [{ name: 'Excel Files', extensions: ['xlsx'] }]
+    filters: [{ name: 'Excel Files', extensions: ['xlsx'] }]
   });
 
   if (!canceled && filePath) {
-      try {
-          fs.writeFileSync(filePath, excelBuffer);
-          return { filePath };
-      } catch (error) {
-          console.error('Error saving Excel file:', error);
-          return { error: 'Error saving Excel file' };
-      }
+    try {
+      fs.writeFileSync(filePath, excelBuffer);
+      fs.unlinkSync(convertedFilePath);
+      return { filePath };
+    } catch (error) {
+      console.error('Error saving Excel file:', error);
+      return { error: 'Error saving Excel file' };
+    }
   } else {
-      console.log('Saving process canceled');
-      return null; 
+    console.log('Saving process canceled');
+    return null;
   }
 });
 
@@ -90,6 +91,19 @@ ipcMain.on('start-conversion-formatting', async (event, { filePath, outputDir })
   } catch (error) {
   }
   
+});
+
+//<=====================================================================================================>
+
+//<=========================================PDF2EXCEL====================================================>
+
+ipcMain.on('open-save-dialog', async (event, args) => {
+  const { filePaths } = await dialog.showOpenDialog({
+    title: 'Save Split PDF',
+    defaultPath: args.defaultPath,
+    properties: ['openDirectory']
+  });
+  event.sender.send('selected-directory', filePaths[0]);
 });
 
 //<=====================================================================================================>
