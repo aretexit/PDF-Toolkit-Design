@@ -22,7 +22,9 @@ convertBtnDocs.addEventListener('click', async () => {
     }
 });
 
-ipcRenderer.on('docx-complete', async (event, convertedFilePath) => {
+
+ipcRenderer.on('docx-complete', async (event, path) => {
+    convertedFilePath = path;
     loaderDocs.style.display = 'none';
     dbtnDocs.style.display = 'block';
     dbtnDocs.disabled = false;
@@ -34,46 +36,48 @@ ipcRenderer.on('docx-complete', async (event, convertedFilePath) => {
         showConfirmButton: false,
         timer: 1500
     });
-
-    dbtnDocs.addEventListener('click', async () => {
-        const response = await ipcRenderer.invoke('save-docx', convertedFilePath);
-        dbtn.disabled = true;
-
-        fileInputDocs.disabled = false;
-        convertBtn.disabled = false;
-    
-        if (response && response.filePath) {
-            const { filePath } = response;
-            fs.rename(convertedFilePath, filePath, (err) => {
-                if (err) {
-                    dbtnDocs.disabled = true;
-                    dbtn.innerHTML = `<i class="fa-solid fa-download"></i> Docs Saved`;
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "File Saved Successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                } else {
-                    dbtnDocs.disabled = true;
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "File Saved Successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    console.log('File moved successfully');
-                }
-            });
-        } else {
-            fileInputDocs.disabled = false;
-            convertBtnDocs.disabled = false;
-        }
-    });
     document.getElementById("file-input-docs").value = "";
     document.getElementById("file-input-docs").disabled = false; 
+});
+
+
+dbtnDocs.addEventListener('click', async () => {
+    if (!convertedFilePath) return; 
+    const response = await ipcRenderer.invoke('save-docx', convertedFilePath);
+    dbtn.disabled = true;
+
+    fileInputDocs.disabled = false;
+    convertBtn.disabled = false;
+
+    if (response && response.filePath) {
+        const { filePath } = response;
+        fs.rename(convertedFilePath, filePath, (err) => {
+            if (err) {
+                dbtnDocs.disabled = true;
+                dbtn.innerHTML = `<i class="fa-solid fa-download"></i> Docs Saved`;
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "File Saved Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            } else {
+                dbtnDocs.disabled = true;
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "File Saved Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                console.log('File moved successfully');
+            }
+        });
+    } else {
+        fileInputDocs.disabled = false;
+        convertBtnDocs.disabled = false;
+    }
 });
 
 backbtnDocs.addEventListener('click', () => {
