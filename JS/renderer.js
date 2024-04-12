@@ -85,11 +85,24 @@ ipcRenderer.on('conversion-complete', async (event, convertedFilePath) => {
                 const { filePath } = response;
                 fs.rename(convertedFilePath, filePath, (err) => {
                     if (err) {
-                        dbtn.disabled = false;
-                        dbtn.innerHTML = `<i class="fa-solid fa-download"></i> Download PDF`;
-                        console.error('Error moving file:', err);
+                        dbtn.disabled = true;
+                        dbtn.innerHTML = `<i class="fa-solid fa-download"></i> PDF Saved`;
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "File Saved Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     } else {
                         dbtn.disabled = true;
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "File Saved Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                         console.log('File moved successfully');
                     }
                 });

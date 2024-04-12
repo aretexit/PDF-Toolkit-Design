@@ -263,13 +263,16 @@ var btnimg = document.getElementById('imgbtn');
 
 document.getElementById("file-select-imgbtn").addEventListener("click", function() {
     document.getElementById("file-input-img").click();
-    imgbtnselect.style.display = 'none';
 });
 
 document.getElementById("file-input-img").addEventListener("change", function(event) {
     if (event.target.files.length === 0) {
-        document.getElementById("file-select-imgbtn").style.display = "block";
+        document.getElementById("file-select-btn-img").style.display = "block";
+        document.getElementById("selected-file-info-img").style.display = "block";
+    } else {
+        document.getElementById("file-select-imgbtn").style.display = "none";
     }
+    
     displaySelectedFiles(event.target.files, 'img');
 });
    
@@ -297,12 +300,14 @@ var btndocs = document.getElementById('docsbtn');
 
 document.getElementById("file-select-docsbtn").addEventListener("click", function() {
     document.getElementById("file-input-docs").click();
-    docsbtnselect.style.display = 'none';
 });
 
 document.getElementById("file-input-docs").addEventListener("change", function(event) {
     if (event.target.files.length === 0) {
-        document.getElementById("file-select-docsbtn").style.display = "block";
+        document.getElementById("file-select-btn-docs").style.display = "block";
+        document.getElementById("selected-file-info-docs").style.display = "block";
+    } else {
+        document.getElementById("file-select-docsbtn").style.display = "none";
     }
     displaySelectedFiles(event.target.files, 'docs');
 });
@@ -352,6 +357,8 @@ document.getElementById("selected-file-info-excel").addEventListener("click", fu
         if (remainingFilesExcel.length === 0) {
             document.getElementById("selected-file-info-excel").style.display = "none";
             document.getElementById("excelbtn").style.display = "none";
+            document.getElementById("excelbtn2").style.display = "none";
+            document.getElementById("toggle").style.display = "none";
             document.getElementById("file-select-excelbtn").style.display = "block";
             document.getElementById("file-input-excel").value = "";
         }
