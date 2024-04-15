@@ -1,5 +1,6 @@
 //<==================================================ANIMATIONS=====================================================================>
 function toggleSize(element) {
+
     var selectedFiles = element.querySelectorAll('.selected-file');
     var selectedFilesSplit = element.querySelectorAll('.selected-file-split');
     var selectedFilesImg = element.querySelectorAll('.selected-file-img');
