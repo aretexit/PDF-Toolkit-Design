@@ -1,15 +1,15 @@
 const { MongoClient } = require('mongodb');
-const { v4: uuidv4 } = require('uuid'); // Import UUID generator
+const { v4: uuidv4 } = require('uuid'); 
 
 const uri = "mongodb+srv://grmblnc:zWIS4BSBo53OTjHu@mongodb.isywpds.mongodb.net/?retryWrites=true&w=majority&appName=MongoDB";
 
 const user_input = document.getElementById('user_input');
 let apiKey = '';
-let computerId = localStorage.getItem('computerId'); // Retrieve computerId from localStorage
+let computerId = localStorage.getItem('computerId'); 
 
 if (!computerId) {
-    computerId = uuidv4(); // Generate new UUID if computerId doesn't exist
-    localStorage.setItem('computerId', computerId); // Save computerId to localStorage
+    computerId = uuidv4(); 
+    localStorage.setItem('computerId', computerId); 
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -58,8 +58,8 @@ document.getElementById('btnsub').addEventListener('click', async () => {
                 timer: 1500
             });
 
-            const validSecret = ({ user_secretkey: result.db_secretkey, computerId }); // Include computerId in document
-            const updateResult = await coll2.updateOne({ computerId }, { $set: validSecret }, { upsert: true }); // Update based on computerId
+            const validSecret = ({ user_secretkey: result.db_secretkey, computerId }); 
+            const updateResult = await coll2.updateOne({ computerId }, { $set: validSecret }, { upsert: true }); 
 
             console.log("API key updated in user_secretkey collection:", updateResult.upsertedId || "No new document inserted");
 
