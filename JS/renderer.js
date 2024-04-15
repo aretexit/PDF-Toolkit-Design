@@ -10,6 +10,10 @@ const dbtn = document.getElementById('download-excel');
 const checkbox = document.getElementById("_checkbox-26");
 const toggle = document.getElementById("toggle");
 
+ipcRenderer.on('getApiKey', (event, apiKey) => {
+    ipcRenderer.send('apiKey', apiKey);
+});
+
 convertBtn.addEventListener('click', async () => {
     const fileInput = document.getElementById('file-input-excel');
     const file = fileInput.files[0];
@@ -114,7 +118,6 @@ dbtn.addEventListener('click', async () => {
             }
         });
     } else {
-        // Handle the case when response or response.filePath is falsy
         const fileInput = document.getElementById('file-input-excel');
         const convertBtn = document.getElementById('excelbtn');
         const convertBtn2 = document.getElementById('excelbtn2');
@@ -132,6 +135,8 @@ backbtnExcel.addEventListener('click', () => {
     convertBtn.disabled = false;
     convertBtn2.disabled = false;
     document.getElementById("selected-file-info-excel").innerHTML = "";
+    checkbox.checked = false;
+
 });
 
 function toggleCode() {

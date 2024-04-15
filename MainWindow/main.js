@@ -5,7 +5,6 @@ const excel2 = require('../JS/excel-multiple')
 const excel3 = require('../JS/toggle')
 const docx = require('../JS/docs')
 const fs = require('fs');
-const { default: Swal } = require('sweetalert2')
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -148,3 +147,25 @@ ipcMain.on('docx-conversion', async (event, { filePath, outputDir }) => {
 });
 
 //<=====================================================================================================>
+
+ipcMain.on('api', (event, apiKey) => {
+  const getApiKey = apiKey;
+  event.sender.send('getApiKey', getApiKey);
+})
+
+ipcMain.on('apiKey', (event, apiKey) => {
+  excel.setApiKey(apiKey);
+});
+
+ipcMain.on('apiKey', (event, apiKey) => {
+  excel2.setApiKey(apiKey);
+});
+
+ipcMain.on('apiKey', (event, apiKey) => {
+  excel3.setApiKey(apiKey);
+});
+
+ipcMain.on('apiKey', (event, apiKey) => {
+  docx.setApiKey(apiKey);
+});
+

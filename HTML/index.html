@@ -28,7 +28,7 @@
         </a>
     </div>
     <!----------------------------------------------------------------------------------------->
-
+    <div class="whole-content" style="display: none;">
     <div class="box-row1">
     <!-----------------------------------MERGE PDF--------------------------------------------->
 
@@ -227,7 +227,7 @@
         </button>
         <button style="display: none;" class="excelbtn2" id="excelbtn2">
             Convert multiple sheets <i class="fa-solid fa-arrow-right"></i>
-    </button>
+        </button>
         <button style="display: none;" class="download" id="download-excel"><i class="fa-solid fa-download"></i> Download PDF</button>
         <br>
         <a class="backbtn" style="display: none;" id="backbtn-excel"><i class="fa-solid fa-circle-arrow-left" ></i>Back to PDF to Excel</a>
@@ -244,14 +244,21 @@
         </div>
     </div>
     </div>
-
+</div>
+<div class="loader-container">
+    <span class="loader" style="display: block;" id="loadersecret2"></span>
+</div>
     <!-------------------------------------------------------------------------------------------->
 
     <span class="auth-container"  id="auth" style="display: none;">
+        <span class="loader" style="display: none;" id="loadersecret"></span>
         <div class="input-container">
-            <input type="text" placeholder="Enter API Key" class="txtkey" id="user_input"> <br>
-            <input type="button" value="Submit" class="btnsub" id="btnsub"> <br>
-            <input type="button" value="Exit" onclick="authOut()" class="btnexit">
+            <label class="lblapi">API Key</label><br>
+            <input type="text" placeholder="Enter API Key" class="txtkey" id="user_input" disabled required>
+            <i class="fa-solid fa-pencil" onclick="editKey()"></i> 
+            <i class="fa-solid fa-trash" onclick="deleteKey()"></i><br>
+            <input type="button" value="Submit" class="btnsub" id="btnsub" style="display: none;"> <br>
+            <input type="button" value="Exit" onclick="authOut()" class="btnexit" id="btnexit">
         </div>
     </span>
 

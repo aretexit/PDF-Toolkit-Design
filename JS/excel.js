@@ -1,9 +1,16 @@
 const fs = require('fs');
-const convertapi = require('convertapi')('LSlAIiNjFSmmkxhW');
+let apiKey;
+
+function setApiKey(apiKeyReceived) {
+    apiKey = apiKeyReceived;
+}
+
 const path = require('path');
+
 
 // Convert PDF to Excel using ConvertAPI with OCR
 async function convertToExcelWithOCR(inputPath) {
+    const convertapi = require('convertapi')(apiKey); 
     try {
         const inputFileName = path.basename(inputPath);
         const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.xlsx'; 
@@ -45,5 +52,6 @@ async function main(inputPDFPath, outputDir) {
 }
 
 module.exports = {
+    setApiKey,
     main
 };

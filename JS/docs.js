@@ -1,8 +1,13 @@
 
 const pathDocs = require('path');
-const convertapiDocs = require('convertapi')('LSlAIiNjFSmmkxhW');
+let apiKey;
+
+function setApiKey(apiKeyReceived) {
+    apiKey = apiKeyReceived;
+}
 // Convert PDF to Docx using ConvertAPI
 async function convertDocx(inputPath) {
+    const convertapiDocs = require('convertapi')(apiKey);
     try {
         const inputFileName = pathDocs.basename(inputPath);
         const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.docx'; 
@@ -46,5 +51,6 @@ async function mainDocx(inputPDFPath, outputDir) {
 
 
 module.exports = {
-    mainDocx
+    mainDocx,
+    setApiKey
 };
