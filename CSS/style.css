@@ -11,6 +11,17 @@ body {
     background-color: #D4D4D4;
     overflow-y: hidden;
     font-family: "Inter", sans-serif;
+    animation: intro 1s ease;
+}
+
+@keyframes intro {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .nav {
@@ -33,6 +44,7 @@ body {
 .icons {
     background-color: transparent;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .nav .icons i {
