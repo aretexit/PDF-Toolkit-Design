@@ -123,3 +123,11 @@ Daily Update:
   - Rebuilt the app to see if theres an error.
   - Added PDF to Docs Backend to the new Frontend.
   - Fixed bug on stacking (save as dialog box) on PDF to Excel and PDF to Word.
+
+○ `04/15/2024`
+  - Drafted logic for the secretkey page.
+  - Meeting with the mentors and discussed about the logic
+  - Created UI for the secretkey page
+  - Added in and out animations
+  - Migrate DB from mongoDB to Sqlite3
+  - Successfully created a functionality that will create a unique identifier to a computer and set their own apiKey (mongoDB)
