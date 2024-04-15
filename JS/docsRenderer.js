@@ -22,6 +22,10 @@ convertBtnDocs.addEventListener('click', async () => {
     }
 });
 
+ipcRenderer.on('getApiKey', (event, apiKey) => {
+    ipcRenderer.send('apiKey', apiKey);
+});
+
 
 ipcRenderer.on('docx-complete', async (event, path) => {
     convertedFilePath = path;

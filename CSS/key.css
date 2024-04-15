@@ -107,3 +107,48 @@
         opacity: 1;
     }
 }
+
+#loadersecret {
+    z-index: 99999;
+    margin-left: 52rem;
+    margin-top: 25rem;  
+}
+
+.lblapi {
+    margin-left: -1rem;
+    font-size: 49px;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#loadersecret2 {
+    width: 500px;
+    height: 500px;
+    border: 40px dotted #32449C;
+    border-style: solid solid dotted dotted;
+}
+
+#loadersecret2::after {
+    width: 300px;
+    height: 300px;
+    border: 30px dotted #EF8B16;
+    border-style: solid solid dotted;
+}
+
+.fa-pencil {
+    cursor: pointer;
+    font-size: 30px;
+    margin-right: 5px;
+    color: blue;
+}
+
+.fa-trash {
+    cursor: pointer;
+    font-size: 30px;
+    color: red;
+}
