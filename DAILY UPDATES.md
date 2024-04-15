@@ -130,4 +130,6 @@ Daily Update:
   - Created UI for the secretkey page
   - Added in and out animations
   - Migrate DB from mongoDB to Sqlite3
-  - Successfully created a functionality that will create a unique identifier to a computer and set their own apiKey (mongoDB)
+  - Successfully created a functionality that will create a unique identifier to a computer and set their own apiKey (mongoDB).
+  - Allowed anyone to be able to access the database.
+  - Finished Aretex PDF-Toolkit for the demo.
