@@ -58,7 +58,6 @@ dbtnDocs.addEventListener('click', async () => {
         fs.rename(convertedFilePath, filePath, (err) => {
             if (err) {
                 dbtnDocs.disabled = true;
-                dbtn.innerHTML = `<i class="fa-solid fa-download"></i> Docs Saved`;
                 Swal.fire({
                     position: "center",
                     icon: "success",

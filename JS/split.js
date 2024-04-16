@@ -32,6 +32,13 @@ document.getElementById('splitbtn').addEventListener('click', async () => {
         document.getElementById('backbtn-split').style.display = 'block';
         document.getElementById('selected-file-info-split').style.display = 'none';
         document.getElementById('splitbtn').style.display = 'none';
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Split PDF Successful",
+            showConfirmButton: false,
+            timer: 1500
+          });
     } else {
         Swal.fire({
             position: "center",
@@ -62,12 +69,6 @@ document.getElementById('dbtn-split').addEventListener('click', () => {
                 showConfirmButton: true,
                 });
         } catch (error) {
-            console.error("Error:", error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'An error occurred while splitting the PDF.',
-            });
         }
     });
     
