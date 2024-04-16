@@ -134,7 +134,7 @@ Daily Update:
   - Allowed anyone to be able to access the database.
   - Finished Aretex PDF-Toolkit for the demo.
   
-○ `04/15/2024`
+○ `04/16/2024`
 - Created Introduction, problems, solutions, flowchart for the demo.
 - Briefing/preparation for the demo.
 - fixed minimal bugs.
