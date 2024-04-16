@@ -212,7 +212,7 @@ document.getElementById("selected-file-info").addEventListener("click", function
             document.getElementById("mergebtn").style.display = "none";
             document.getElementById("file-select-btn").style.display = "block";
             document.getElementById("file-input").value = "";
-            document.getElementById("file-input-excel").value = "";
+            document.getElementById("file-input-merge").value = "";
         }
     }
 });

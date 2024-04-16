@@ -55,7 +55,6 @@ ipcMain.handle('save-excel', async (event, convertedFilePath) => {
   if (!canceled && filePath) {
     try {
       fs.writeFileSync(filePath, excelBuffer);
-      fs.unlinkSync(convertedFilePath);
       return { filePath };
     } catch (error) {
       console.error('Error saving Excel file:', error);
@@ -126,7 +125,6 @@ ipcMain.handle('save-docx', async (event, convertedFilePath) => {
   if (!canceled && filePath) {
     try {
       fs.writeFileSync(filePath, docxBuffer);
-      fs.unlinkSync(convertedFilePath);
       return { filePath };
     } catch (error) {
       console.error('Error saving Docs file:', error);
