@@ -133,3 +133,11 @@ Daily Update:
   - Successfully created a functionality that will create a unique identifier to a computer and set their own apiKey (mongoDB).
   - Allowed anyone to be able to access the database.
   - Finished Aretex PDF-Toolkit for the demo.
+  
+○ `04/15/2024`
+- Created Introduction, problems, solutions, flowchart for the demo.
+- Briefing/preparation for the demo.
+- fixed minimal bugs.
+- prepairing for the demo.
+- waiting for updates.
+- Presented Aretex PDF-Toolkit.
