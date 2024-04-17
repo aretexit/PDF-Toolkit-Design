@@ -24,6 +24,7 @@
         0.2s ease box-shadow;
     overflow: hidden;
     z-index: 1;
+    margin-left: -5.5rem;
   }
   
   .checkbox-wrapper label:before {
@@ -110,10 +111,11 @@
   }
 
   .toggle {
-    margin-top: 13.5rem;
-    margin-left: -12rem;
     font-family: "Inter", sans-serif;
     font-size: 12px;
+    margin-left: -4rem;
+    margin-top: 13rem;
+    width: 7rem;
   }
 
   .checkbox-wrapper {

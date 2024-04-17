@@ -1,3 +1,4 @@
+const { text } = require("pdfkit");
 
 const loaderDocs = document.getElementById('loaderDocs');
 const convertBtnDocs = document.getElementById('docsbtn');
@@ -28,6 +29,7 @@ ipcRenderer.on('getApiKey', (event, apiKey) => {
 
 
 ipcRenderer.on('docx-complete', async (event, path) => {
+    if (path){
     convertedFilePath = path;
     loaderDocs.style.display = 'none';
     dbtnDocs.style.display = 'block';
@@ -40,6 +42,15 @@ ipcRenderer.on('docx-complete', async (event, path) => {
         showConfirmButton: false,
         timer: 1500
     });
+    } else {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "ERROR",
+            text: "Conversion Failed, some scanned PDF cannot be converted.",
+            showConfirmButton: true,
+        });
+    }
     document.getElementById("file-input-docs").value = "";
     document.getElementById("file-input-docs").disabled = false; 
 });

@@ -63,21 +63,46 @@ convertBtn2.addEventListener('click', async () => {
 let convertedFilePath; 
 
 ipcRenderer.on('conversion-complete', async (event, path) => {
-    convertedFilePath = path; 
-    loader.style.display = 'none';
-    dbtn.style.display = 'block';
-    dbtn.disabled = false;
-    backbtnExcel.style.display = 'block';
-    Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Conversion Successful",
-        showConfirmButton: false,
-        timer: 1500
-    });
+    if (path) {
+        convertedFilePath = path; 
+        loader.style.display = 'none';
+        dbtn.style.display = 'block';
+        dbtn.disabled = false;
+        backbtnExcel.style.display = 'block';
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Conversion Successful",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    } else {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "ERROR",
+            text: "Conversion Failed, some scanned PDF cannot be converted. Try to turn on `include formatting` and try again.",
+            showConfirmButton: true,
+        });
+        loader.style.display = 'none';
+        dbtn.style.display = 'block';
+        dbtn.disabled = true;
+        backbtnExcel.style.display = 'block';
+    }
     document.getElementById("file-input-excel").value = "";
     document.getElementById("file-input-excel").disabled = false; 
 });
+
+
+ipcRenderer.on('conversion-error', async (event, error) => {
+    Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Conversion Failed, some scanned PDF cannot be converted." + error,
+        showConfirmButton: false,
+        timer: 1500
+    });
+})
 
 dbtn.addEventListener('click', async () => {
     if (!convertedFilePath) return; 
