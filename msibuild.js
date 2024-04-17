@@ -9,7 +9,7 @@ const path = require('path');
 // appDirectory: "C:\\Users\sdkca\Desktop\OurCodeWorld-win32-x64", 
 const APP_DIR = path.resolve(__dirname, './PDF-Toolkit-win32-x64');
 // outputDirectory: "C:\\Users\sdkca\Desktop\windows_installer", 
-const OUT_DIR = path.resolve(__dirname, './windows_installerYeah');
+const OUT_DIR = path.resolve(__dirname, './windows_installer');
 
 // 3. Instantiate the MSICreator
 const msiCreator = new MSICreator({

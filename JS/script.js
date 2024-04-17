@@ -6,10 +6,12 @@ function toggleSize(element) {
     var selectedFilesImg = element.querySelectorAll('.selected-file-img');
     var selectedFilesDocs = element.querySelectorAll('.selected-file-docs');
     var selectedFilesExcel = element.querySelectorAll('.selected-file-excel');
+    var selectedFileshtml = element.querySelectorAll('.selected-file-html');
     if (selectedFiles.length > 0 ||
         selectedFilesSplit.length > 0 ||
         selectedFilesImg.length > 0 ||
         selectedFilesDocs.length > 0 ||
+        selectedFileshtml.length > 0 ||
         selectedFilesExcel.length > 0) {
         return;
     }
@@ -25,6 +27,8 @@ function toggleSize(element) {
     target.id === "file-input-docs" || 
     target.id === "file-select-excelbtn" || 
     target.id === "file-input-excel" ||
+    target.id === "file-select-htmlbtn" || 
+    target.id === "file-input-html" ||
     target.classList.contains("remove-file-btn") ||
     target.classList.contains("selected-file-name") ||
     target.classList.contains("selected-file") ||
@@ -46,6 +50,9 @@ function toggleSize(element) {
     target.classList.contains("remove-file-btn-excel") ||
     target.classList.contains("selected-file-name-excel") ||
     target.classList.contains("selected-file-excel") ||
+    target.classList.contains("remove-file-btn-html") ||
+    target.classList.contains("selected-file-name-html") ||
+    target.classList.contains("selected-file-html") ||
     target.classList.contains("file-name-container-excel")) {
         return;
     }
@@ -62,7 +69,7 @@ function toggleSize(element) {
         element.classList.add("shrunken");
         btnselect.classList.remove('fadein');
         lbldesc.classList.remove("fadein");
-        lbladd.classList.remove("fadein")
+        lbladd.classList.remove("fadein");
         btnselect.style.display = 'none';
         lbladd.style.display = 'none';
         lbldesc.classList.add('fadeout');
@@ -90,7 +97,8 @@ function displaySelectedFiles(files, mode) {
         mode === 'split' ? "selected-file-info-split" :
         mode === 'img' ? "selected-file-info-img" :
         mode === 'docs' ? "selected-file-info-docs" :
-        "selected-file-info-excel"
+        mode === 'excel' ? "selected-file-info-excel" :
+        "selected-file-info-html"
     );
     selectedFileContainer.innerHTML = '';
     if (files.length > 0) {
@@ -101,7 +109,8 @@ function displaySelectedFiles(files, mode) {
                 mode === 'split' ? 'selected-file-split' : 
                 mode === 'img' ?    'selected-file-img' :
                 mode === 'docs' ?  'selected-file-docs':
-                'selected-file-excel');
+                mode === 'excel' ?  'selected-file-excel':
+                'selected-file-html');
             
             var fileNameContainer = document.createElement('span');
             fileNameContainer.classList.add(
@@ -109,7 +118,8 @@ function displaySelectedFiles(files, mode) {
                 mode === 'split' ? 'file-name-container-split' :
                 mode === 'img' ? 'file-name-container-img' :
                 mode === 'docs' ?  'file-name-container-docs':
-                'file-name-container-excel');
+                mode === 'excel' ?  'file-name-container-excel':
+                'file-name-container-html');
             
             var fileName = document.createElement('span');
             fileName.classList.add(
@@ -117,7 +127,8 @@ function displaySelectedFiles(files, mode) {
                 mode === 'split' ? 'selected-file-name-split' :
                 mode === 'img' ? 'selected-file-name-img' :
                 mode === 'docs' ?  'selected-file-name-docs' :
-                'selected-file-name-excel');
+                mode === 'excel' ?  'selected-file-name-excel' :
+                'selected-file-name-html');
             fileName.textContent = files[i].name;
             
             var iconSpan = document.createElement('span');
@@ -135,7 +146,8 @@ function displaySelectedFiles(files, mode) {
                 mode === 'split' ? 'remove-file-btn-split' :
                 mode === 'img' ? 'remove-file-btn-img' :
                 mode === 'docs' ?  'remove-file-btn-docs' :
-                'remove-file-btn-excel');
+                mode === 'excel' ?  'remove-file-btn-excel' :
+                'remove-file-btn-html');
 
             fileNameContainer.appendChild(iconSpan);
             fileNameContainer.appendChild(fileName);
@@ -151,6 +163,7 @@ function displaySelectedFiles(files, mode) {
             mode === 'split' ? 'splitbtn' :
             mode === 'img' ?    'imgbtn' :
             mode === 'docs' ? "docsbtn" :
+            mode === 'html' ? "htmlbtn" :
             "excelbtn" &&  "excelbtn2").style.display = "block"; 
         if (mode === 'excel') {
             document.getElementById('excelbtn').style.display = "block"; 
@@ -164,6 +177,7 @@ function displaySelectedFiles(files, mode) {
             mode === 'split' ? "splitbtn" :
             mode === 'img' ? "imgbtn" :
             mode === 'docs' ? "docsbtn" :
+            mode === 'html' ? "htmlbtn" :
             "excelbtn" &&  "excelbtn2").style.display = "none"; 
             if (mode === 'excel') {
                 document.getElementById('excelbtn').style.display = "none"; 
@@ -175,7 +189,8 @@ function displaySelectedFiles(files, mode) {
             mode === 'split' ? "file-select-splitbtn" :
             mode === 'img' ? "file-select-imgbtn" :
             mode === 'docs' ?  "file-select-docsbtn":
-            "file-select-excelbtn").style.display = "block"; 
+            mode === 'excel' ?  "file-select-excelbtn":
+            "file-select-htmlbtn").style.display = "block"; 
     }
 }
 
@@ -362,6 +377,41 @@ document.getElementById("selected-file-info-excel").addEventListener("click", fu
             document.getElementById("toggle").style.display = "none";
             document.getElementById("file-select-excelbtn").style.display = "block";
             document.getElementById("file-input-excel").value = "";
+        }
+    }
+});
+
+//<============================================================================================================================>
+
+//<==================================================HTML=====================================================================>
+
+var htmlbtnselect = document.getElementById('file-select-htmlbtn');
+var btnhtml = document.getElementById('htmlbtn');
+
+document.getElementById("file-select-htmlbtn").addEventListener("click", function() {
+    document.getElementById("file-input-html").click();
+});
+
+document.getElementById("file-input-html").addEventListener("change", function(event) {
+    if (event.target.files.length > 0) {
+        document.getElementById("file-select-htmlbtn").style.display = "none";
+    } else {
+        document.getElementById("file-select-htmlbtn").style.display = "block";
+        document.getElementById("selected-file-info-html").style.display = "block";
+    }
+    displaySelectedFiles(event.target.files, 'html');
+});
+
+document.getElementById("selected-file-info-html").addEventListener("click", function(event) {
+    if (event.target.classList.contains("remove-file-btn-html")) {
+        var fileEntryhtml = event.target.parentElement;
+        fileEntryhtml.remove();
+        var remainingFileshtml = document.querySelectorAll('.selected-file-html');
+        if (remainingFileshtml.length === 0) {
+            document.getElementById("selected-file-info-excel").style.display = "none";
+            document.getElementById("htmlbtn").style.display = "none";
+            document.getElementById("file-select-htmlbtn").style.display = "block";
+            document.getElementById("file-input-html").value = "";
         }
     }
 });

@@ -72,6 +72,7 @@ ipcMain.on('start-conversion', async (event, { filePath, outputDir }) => {
     const convertedFilePath = await excel.main(filePath, outputDir); 
     event.reply('conversion-complete', convertedFilePath);
   } catch (error) {
+    event.reply('conversion-error', error);
   }
 });
 
@@ -166,4 +167,3 @@ ipcMain.on('apiKey', (event, apiKey) => {
 ipcMain.on('apiKey', (event, apiKey) => {
   docx.setApiKey(apiKey);
 });
-
