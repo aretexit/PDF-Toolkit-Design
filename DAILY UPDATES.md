@@ -135,9 +135,17 @@ Daily Update:
   - Finished Aretex PDF-Toolkit for the demo.
   
 ○ `04/16/2024`
-- Created Introduction, problems, solutions, flowchart for the demo.
-- Briefing/preparation for the demo.
-- fixed minimal bugs.
-- prepairing for the demo.
-- waiting for updates.
-- Presented Aretex PDF-Toolkit.
+  - Created Introduction, problems, solutions, flowchart for the demo.
+  - Briefing/preparation for the demo.
+  - fixed minimal bugs.
+  - prepairing for the demo.
+  - waiting for updates.
+  - Presented Aretex PDF-Toolkit.
+  
+○ `04/17/2024`
+  - Added error tracking when conversion failed (pdf2excel, pdf2word).
+  - Testing convertapi's html to pdf.
+  - Visited by OJT Adviser.
+  - Added UI for HTML to PDF.
+  - Added in and out animations.
+  - Developed code for HTML to PDF.
