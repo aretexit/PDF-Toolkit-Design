@@ -57,9 +57,10 @@ ipcRenderer.on('docx-complete', async (event, path) => {
 
 
 dbtnDocs.addEventListener('click', async () => {
+    dbtnDocs.style.background = 'gray';
     if (!convertedFilePath) return; 
     const response = await ipcRenderer.invoke('save-docx', convertedFilePath);
-    dbtn.disabled = true;
+    dbtnDocs.disabled = true;
 
     fileInputDocs.disabled = false;
     convertBtn.disabled = false;
@@ -101,4 +102,6 @@ backbtnDocs.addEventListener('click', () => {
     document.getElementById("selected-file-info-docs").innerHTML = "";
     backbtnDocs.style.display = 'none';
     dbtnDocs.style.display = 'none';
+    dbtnDocs.style.background = '#EA2929';
+    dbtnDocs.disabled = 'false';
 });

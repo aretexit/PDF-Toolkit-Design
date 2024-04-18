@@ -51,7 +51,9 @@ document.getElementById('splitbtn').addEventListener('click', async () => {
 });
 
 document.getElementById('dbtn-split').addEventListener('click', () => {
-    ipcRenderer.send('open-save-dialog', { defaultPath: 'output_folder' });
+    document.getElementById('dbtn-split').style.background = 'gray';
+    document.getElementById('dbtn-split').disabled = true;
+    ipcRenderer.send('open-save-dialog', { defaultPath: '' });
     ipcRenderer.on('selected-directory', async (event, filePath) => {
         const outputFolder = filePath;
     
@@ -80,4 +82,7 @@ document.getElementById('backbtn-split').addEventListener('click', () => {
     document.getElementById('dbtn-split').style.display = 'none';
     document.getElementById('backbtn-split').style.display = 'none';
     document.getElementById('file-select-splitbtn').style.display = 'block';
+    document.getElementById('dbtn-split').style.background = '#EA2929';
+    document.getElementById('dbtn-split').disabled = false;
+
 })

@@ -42,10 +42,10 @@ app.on('window-all-closed', () => {
 //<=========================================PDF2EXCEL====================================================>
 
 ipcMain.handle('save-excel', async (event, convertedFilePath) => {
-  const excelBuffer = fs.readFileSync(convertedFilePath);
+  const excelBuffer = path.join(__dirname, './');
 
   const pdfFileName = path.basename(convertedFilePath, path.extname(convertedFilePath));
-  const defaultPath = path.dirname(convertedFilePath);
+  const defaultPath = app.getPath('downloads');
 
   const { filePath, canceled } = await dialog.showSaveDialog({
     defaultPath: path.join(defaultPath, pdfFileName),
@@ -58,9 +58,11 @@ ipcMain.handle('save-excel', async (event, convertedFilePath) => {
       return { filePath };
     } catch (error) {
       console.error('Error saving Excel file:', error);
+      fs.unlinkSync(convertedFilePath);
       return { error: 'Error saving Excel file' };
     }
   } else {
+    fs.unlinkSync(convertedFilePath);
     console.log('Saving process canceled');
     return null;
   }
@@ -101,7 +103,7 @@ ipcMain.on('start-conversion-formatting', async (event, { filePath, outputDir })
 ipcMain.on('open-save-dialog', async (event, args) => {
   const { filePaths } = await dialog.showOpenDialog({
     title: 'Save Split PDF',
-    defaultPath: args.defaultPath,
+    defaultPath: app.getPath('downloads'),
     properties: ['openDirectory']
   });
   event.sender.send('selected-directory', filePaths[0]);
@@ -113,10 +115,10 @@ ipcMain.on('open-save-dialog', async (event, args) => {
 //<=========================================PDF2DOCS====================================================>
 
 ipcMain.handle('save-docx', async (event, convertedFilePath) => {
-  const docxBuffer = fs.readFileSync(convertedFilePath);
+  const docxBuffer = path.join(__dirname, './');
 
   const pdfFileName = path.basename(convertedFilePath, path.extname(convertedFilePath));
-  const defaultPath = path.dirname(convertedFilePath);
+  const defaultPath = app.getPath('downloads');
 
   const { filePath, canceled } = await dialog.showSaveDialog({
     defaultPath: path.join(defaultPath, pdfFileName),
@@ -129,9 +131,12 @@ ipcMain.handle('save-docx', async (event, convertedFilePath) => {
       return { filePath };
     } catch (error) {
       console.error('Error saving Docs file:', error);
+      fs.unlinkSync(convertedFilePath);
       return { error: 'Error saving Docs file' };
+      
     }
   } else {
+      fs.unlinkSync(convertedFilePath);
     console.log('Saving process canceled');
     return null;
   }

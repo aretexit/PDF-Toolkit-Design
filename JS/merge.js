@@ -29,7 +29,7 @@ mergebtn.addEventListener('click', async () => {
         });
 
         mergebtn.style.display = 'none';
-        files.style.display = 'none';
+        document.getElementById('selected-file-info').style.display = 'none';
         downloadbtn.style.display = 'block';
         backbtn.style.display = 'block';
     } catch (error) {
@@ -46,15 +46,14 @@ downloadbtn.addEventListener('click', async () => {
     a.download = 'Merged.pdf';
     a.click();
     URL.revokeObjectURL(a.href); 
-    document.getElementById("file-input").value = "";
 });
 
 backbtn.addEventListener('click', () => {
-    downloadbtn.style.display = 'none';
-    backbtn.style.display = 'none';
-    selectbtn.style.display = 'block';
     document.getElementById("file-input").value = "";
     document.getElementById("selected-file-info").innerHTML = "";
+    document.getElementById('download').style.display = 'none';
+    document.getElementById('backbtn').style.display = 'none';
+    document.getElementById('file-select-btn').style.display = 'block';
 })
 
 

@@ -81,7 +81,7 @@ ipcRenderer.on('conversion-complete', async (event, path) => {
             position: "center",
             icon: "error",
             title: "ERROR",
-            text: "Conversion Failed, some scanned PDF cannot be converted. Try to turn on `include formatting` and try again.",
+            text: "Conversion Failed",
             showConfirmButton: true,
         });
         loader.style.display = 'none';
@@ -105,9 +105,10 @@ ipcRenderer.on('conversion-error', async (event, error) => {
 })
 
 dbtn.addEventListener('click', async () => {
+    dbtn.disabled = true;
+    dbtn.style.background = 'gray';
     if (!convertedFilePath) return; 
     const response = await ipcRenderer.invoke('save-excel', convertedFilePath);
-    dbtn.disabled = true;
     const fileInput = document.getElementById('file-input-excel');
     const convertBtn = document.getElementById('excelbtn');
     const convertBtn2 = document.getElementById('excelbtn2');
@@ -152,6 +153,8 @@ dbtn.addEventListener('click', async () => {
 });
 
 backbtnExcel.addEventListener('click', () => {
+    dbtn.disabled = true;
+    dbtn.style.background = '#EA2929';
     dbtn.style.display = 'none';
     backbtnExcel.style.display = 'none';
     selectBtnExcel.style.display = 'block';
