@@ -1,6 +1,5 @@
 
 const pathDocs = require('path');
-let apiKey;
 
 function setApiKey(apiKeyReceived) {
     apiKey = apiKeyReceived;
@@ -11,7 +10,7 @@ async function convertDocx(inputPath) {
     try {
         const inputFileName = pathDocs.basename(inputPath);
         const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.docx'; 
-        const outputDir = pathDocs.dirname(inputPath);
+        const outputDir = pathDocs.join(__dirname);
         const outputPath = pathDocs.join(outputDir, outputFileName);
 
         const result = await convertapiDocs.convert('docx', {

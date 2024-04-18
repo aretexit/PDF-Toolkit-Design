@@ -14,7 +14,7 @@ async function convertToExcelWithOCR(inputPath) {
     try {
         const inputFileName = path.basename(inputPath);
         const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.xlsx'; 
-        const outputDir = path.dirname(inputPath);
+        const outputDir = path.join(__dirname);
         const outputPath = path.join(outputDir, outputFileName);
 
         const result = await convertapi.convert('xlsx', {
@@ -26,10 +26,8 @@ async function convertToExcelWithOCR(inputPath) {
         });
 
         await result.saveFiles(outputPath);
-        console.log("Conversion successful. Excel file saved at:", outputPath);
         return outputPath;
     } catch (error) {
-        console.log('Error converting PDF to Excel with OCR:', error);
         return null;
     }
 }

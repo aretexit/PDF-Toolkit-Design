@@ -51,13 +51,13 @@
         </label>
         </div>
         <button id="file-select-btn" class="btnselect" style="display: none;">Select PDF files</button>
-        <input type="file" id="file-input" style="display: none;" accept=".pdf" multiple required>
+        <input type="file" id="file-input" style="display: none;" name="files[]" accept=".pdf" multiple required>
         <div class="files-container" id="mergeFiles">
         <div id="selected-file-info" style="display: none;" class="test">
         </div>
         </div>
         <button style="display: none;" class="mergebtn" id="mergebtn">Merge PDF <i class="fa-solid fa-arrow-right"></i></button>
-        <button style="display: none;" class="download" id="download"><i class="fa-solid fa-download"></i> Download Docs</i></button>
+        <button style="display: none;" class="download" id="download"><i class="fa-solid fa-download"></i> Download PDF</i></button>
         <br>
         <a class="backbtn" style="display: none;" id="backbtn"><i class="fa-solid fa-circle-arrow-left" ></i>Back to Merge PDF</a>
     </div>
@@ -101,6 +101,10 @@
         <a class="backbtn" style="display: none;" id="backbtn-split"><i class="fa-solid fa-circle-arrow-left" ></i>Back to Split PDF</a>
     </div>
 
+    <!-------------------------------------------------------------------------------------------->
+
+    <!-----------------------------------HTML to PDF--------------------------------------------->
+    
     <div class="boxes boxes-html"  onclick="toggleSize(this)">
         <img src="../IMAGES/htmlicon.png" alt="pdf" class="pdfimage">
         <img src="../IMAGES/converticon.png" alt="mereg" class="mergeimage">
@@ -177,7 +181,7 @@
         <button style="display: none;" class="imgbtn" id="imgbtn">Convert <i class="fa-solid fa-arrow-right"></i></button>
         <button style="display: none;" class="download" id="dbtn-img"><i class="fa-solid fa-download"></i> Download PDF</i></button>
         <br>
-        <a class="backbtn" style="display: none;" id="backbtn-img"><i class="fa-solid fa-circle-arrow-left" ></i>Back to Split PDF</a>
+        <a class="backbtn" style="display: none;" id="backbtn-img"><i class="fa-solid fa-circle-arrow-left" ></i>Back to Image to PDF</a>
     </div>
 
     <!-------------------------------------------------------------------------------------------->

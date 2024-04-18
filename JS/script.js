@@ -200,22 +200,23 @@ function displaySelectedFiles(files, mode) {
 //<==================================================MERGE=====================================================================>
 
 var btnselect = document.getElementById('file-select-btn');
-var btnmerge = document.getElementById('mergebtn');
-var selectedFilesContainer = document.getElementById('selected-file-info');
+var btnsmerge = document.getElementById('mergebtn');
 
 document.getElementById("file-select-btn").addEventListener("click", function() {
     document.getElementById("file-input").click();
 });
 
 document.getElementById("file-input").addEventListener("change", function(event) {
-    if (event.target.files.length === 0) {
+    if (event.target.files.length > 0) {
+        document.getElementById("file-select-btn").style.display = "none";
+    } else {
         document.getElementById("file-select-btn").style.display = "block";
         document.getElementById("selected-file-info").style.display = "block";
-    } else {
-        document.getElementById("file-select-btn").style.display = "none";
+        document.getElementById("mergeFiles").style.display = "block";
     }
     displaySelectedFiles(event.target.files, 'merge');
 });
+   
 
 document.getElementById("selected-file-info").addEventListener("click", function(event) {
     if (event.target.classList.contains("remove-file-btn")) {
@@ -227,10 +228,10 @@ document.getElementById("selected-file-info").addEventListener("click", function
             document.getElementById("mergebtn").style.display = "none";
             document.getElementById("file-select-btn").style.display = "block";
             document.getElementById("file-input").value = "";
-            document.getElementById("file-input-merge").value = "";
         }
     }
 });
+
 
 
 //<============================================================================================================================>

@@ -54,3 +54,11 @@ document.getElementById('dbtn-html').addEventListener('click', () => {
     a.click();
     document.body.removeChild(a);
 })
+
+document.getElementById("backbtn-html").addEventListener('click', () => {
+  document.getElementById("file-input-html").value = "";
+  document.getElementById("selected-file-info-html").innerHTML = "";
+  document.getElementById('dbtn-html').style.display = 'none';
+  document.getElementById('backbtn-html').style.display = 'none';
+  document.getElementById('file-select-htmlbtn').style.display = 'block';
+})
