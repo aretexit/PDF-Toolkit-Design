@@ -10,7 +10,7 @@ async function convertDocx(inputPath) {
     try {
         const inputFileName = pathDocs.basename(inputPath);
         const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.docx'; 
-        const outputDir = pathDocs.join(__dirname);
+        const outputDir = pathDocs.dirname(inputPath);
         const outputPath = pathDocs.join(outputDir, outputFileName);
 
         const result = await convertapiDocs.convert('docx', {

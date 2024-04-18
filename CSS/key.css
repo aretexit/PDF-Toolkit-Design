@@ -110,8 +110,9 @@
 
 #loadersecret {
     z-index: 99999;
-    margin-left: 52rem;
-    margin-top: 25rem;  
+    position: absolute;
+    top: 40%;
+    left: 40%;
 }
 
 .lblapi {
