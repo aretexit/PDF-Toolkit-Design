@@ -149,3 +149,11 @@ Daily Update:
   - Added UI for HTML to PDF.
   - Added in and out animations.
   - Developed code for HTML to PDF.
+    
+○ `04/18/2024`
+  - Fixed major bug on pdf to excel where converted file automatically saved to input directory.
+  - Also Fixed major bug on multiple sheets and include formatting (pdf to excel).
+  - Also Fixed major bug on pdf to docs, Fixed many minor bugs.
+  - Added delete functionality for converted files to avoid stacking.
+  - Packaged the PDF-Toolkit to see if theres any bug.
+  - Bug found on pdf to excel and pdf to docs (Filepaths).
