@@ -42,7 +42,7 @@ app.on('window-all-closed', () => {
 //<=========================================PDF2EXCEL====================================================>
 
 ipcMain.handle('save-excel', async (event, convertedFilePath) => {
-  const excelBuffer = path.join(__dirname, './');
+  const excelBuffer = path.join(__dirname, '');
 
   const pdfFileName = path.basename(convertedFilePath, path.extname(convertedFilePath));
   const defaultPath = app.getPath('downloads');

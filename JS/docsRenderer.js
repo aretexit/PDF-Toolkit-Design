@@ -10,7 +10,7 @@ const fileInputDocs = document.getElementById('file-input-docs');
 
 convertBtnDocs.addEventListener('click', async () => {
     const file = fileInputDocs.files[0];
-    const outputDir = "./";
+    const outputDir = path.join(__dirname, '');
 
     if (file && !convertBtn.disabled) {
         fileDocs.style.display = 'none';

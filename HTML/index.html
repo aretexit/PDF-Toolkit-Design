@@ -17,7 +17,7 @@
 <body>
     <!-----------------------------NAVIGATION BAR--------------------------------------------->
     <div class="nav">
-        <a class="icons"><i class="fa-solid fa-house"></i></a>
+        <a class="icons" onclick="homeIn()"><i class="fa-solid fa-house"></i></a>
         <a class="icons" onclick="popAuth()"><i class="fa-solid fa-gear gear"></i></a>
     </div>
     <!----------------------------------------------------------------------------------------->
@@ -283,6 +283,8 @@
 </div>
     <!-------------------------------------------------------------------------------------------->
 
+    <!-----------------------------------------SECRET--------------------------------------------->
+
     <span class="auth-container"  id="auth" style="display: none;">
         <span class="loader" style="display: none;" id="loadersecret"></span>
         <div class="input-container">
@@ -294,6 +296,8 @@
             <input type="button" value="Exit" onclick="authOut()" class="btnexit" id="btnexit">
         </div>
     </span>
+
+    <!-------------------------------------------------------------------------------------------->
 
     <script>
         function popAuth() {
@@ -307,6 +311,10 @@
             document.getElementById('auth').classList.add('popout');
             document.getElementById('auth').classList.remove('popup');
             document.querySelector('.gear').style.color = 'white';
+        }
+
+        function homeIn() {
+            document.getElementById('auth').classList.add('popout');
         }
     </script>
 

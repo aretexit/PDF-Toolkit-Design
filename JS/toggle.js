@@ -13,7 +13,7 @@ async function convertToExcelWithOCR(inputPath) {
     try {
         const inputFileName = path.basename(inputPath);
         const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.xlsx';
-        const outputDir = path.join(__dirname);
+        const outputDir = path.dirname(inputPath);
         const outputPath = path.join(outputDir, outputFileName);
 
         const result = await convertapi.convert('xlsx', {

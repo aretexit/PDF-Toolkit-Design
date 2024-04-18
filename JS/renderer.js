@@ -17,7 +17,7 @@ ipcRenderer.on('getApiKey', (event, apiKey) => {
 convertBtn.addEventListener('click', async () => {
     const fileInput = document.getElementById('file-input-excel');
     const file = fileInput.files[0];
-    const outputDir = "./";
+    const outputDir = path.join(__dirname, '');
 
     if (file && !convertBtn.disabled) {
         fileExcel.style.display = 'none'; 
