@@ -1,4 +1,5 @@
 const fs = require('fs');
+const osToggle = require('os');
 let apiKey;
 
 function setApiKey(apiKeyReceived) {
@@ -13,8 +14,9 @@ async function convertToExcelWithOCR(inputPath) {
     try {
         const inputFileName = path.basename(inputPath);
         const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.xlsx';
-        const outputDir = path.dirname(inputPath);
-        const outputPath = path.join(outputDir, outputFileName);
+        const tempDir = osToggle.tmpdir();
+
+        const tempFilePath = path.join(tempDir, outputFileName);
 
         const result = await convertapi.convert('xlsx', {
             File: inputPath,
@@ -24,17 +26,17 @@ async function convertToExcelWithOCR(inputPath) {
             StoreFile: 'false',
         });
 
-        await result.saveFiles(outputPath);
-        return outputPath;
+        await result.saveFiles(tempFilePath);
+        return tempFilePath;
     } catch (error) {
         return null;
     }
 }
 
 // Main Function
-async function main(inputPDFPath, outputDir) {
+async function main(inputPDFPath) {
     try {
-        const excelPath = await convertToExcelWithOCR(inputPDFPath, outputDir);
+        const excelPath = await convertToExcelWithOCR(inputPDFPath);
         if (excelPath) {
             console.log("Conversion successful. Excel file saved at:", excelPath);
             return excelPath;

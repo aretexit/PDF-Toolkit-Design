@@ -10,7 +10,7 @@ const fileInputDocs = document.getElementById('file-input-docs');
 
 convertBtnDocs.addEventListener('click', async () => {
     const file = fileInputDocs.files[0];
-    const outputDir = path.join(__dirname, '');
+    const outputDir = '';
 
     if (file && !convertBtn.disabled) {
         fileDocs.style.display = 'none';
@@ -47,9 +47,14 @@ ipcRenderer.on('docx-complete', async (event, path) => {
             position: "center",
             icon: "error",
             title: "ERROR",
-            text: "Conversion Failed, some scanned PDF cannot be converted.",
+            text: "Conversion Failed",
             showConfirmButton: true,
         });
+        loaderDocs.style.display = 'none';
+        dbtnDocs.style.display = 'block';
+        dbtnDocs.disabled = true;
+        dbtnDocs.style.background = 'gray';
+        backbtnDocs.style.display = 'block';
     }
     document.getElementById("file-input-docs").value = "";
     document.getElementById("file-input-docs").disabled = false; 

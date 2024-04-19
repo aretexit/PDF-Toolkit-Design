@@ -17,7 +17,7 @@ ipcRenderer.on('getApiKey', (event, apiKey) => {
 convertBtn.addEventListener('click', async () => {
     const fileInput = document.getElementById('file-input-excel');
     const file = fileInput.files[0];
-    const outputDir = path.join(__dirname, '');
+    const outputDir = '';
 
     if (file && !convertBtn.disabled) {
         fileExcel.style.display = 'none'; 
@@ -43,7 +43,7 @@ convertBtn.addEventListener('click', async () => {
 convertBtn2.addEventListener('click', async () => {
     const fileInput = document.getElementById('file-input-excel');
     const file = fileInput.files[0];
-    const outputDir = "./";
+    const outputDir = '';
 
     if (file && !convertBtn2.disabled) {
         fileExcel.style.display = 'none'; 
@@ -86,6 +86,7 @@ ipcRenderer.on('conversion-complete', async (event, path) => {
         });
         loader.style.display = 'none';
         dbtn.style.display = 'block';
+        dbtn.style.background = 'gray';
         dbtn.disabled = true;
         backbtnExcel.style.display = 'block';
     }
