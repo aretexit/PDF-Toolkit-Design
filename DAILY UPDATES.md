@@ -157,3 +157,16 @@ Daily Update:
   - Added delete functionality for converted files to avoid stacking.
   - Packaged the PDF-Toolkit to see if theres any bug.
   - Bug found on pdf to excel and pdf to docs (Filepaths).
+
+○ `04/19/2024`
+  - Fixed major bug after packaging app.
+  - Fixed design.
+  - Rebuilt/Repackaged the app.
+  - Tried to use asar to package the app.
+  - Uploaded msi installer to github release.
+  - Rebuilt the app with asar on for security and found out that app doesnt work on directories with app control.
+  - Changed the logic of api (save converted file on temp folder before saving to preferred directory).
+  - Fixed Error Tracking bug.
+  - Released latest installer to github.
+  - Sent Documentation of the PDF-Toolkit.
+  - Added flowchart for the html to pdf functionality.
