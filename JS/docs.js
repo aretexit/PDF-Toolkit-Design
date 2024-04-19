@@ -1,4 +1,4 @@
-
+const osDocs = require('os');
 const pathDocs = require('path');
 
 function setApiKey(apiKeyReceived) {
@@ -10,8 +10,10 @@ async function convertDocx(inputPath) {
     try {
         const inputFileName = pathDocs.basename(inputPath);
         const outputFileName = inputFileName.replace(/\.[^/.]+$/, "") + '.docx'; 
-        const outputDir = pathDocs.dirname(inputPath);
-        const outputPath = pathDocs.join(outputDir, outputFileName);
+       
+        const tempDir = osDocs.tmpdir();
+
+        const tempFilePath = pathDocs.join(tempDir, outputFileName);
 
         const result = await convertapiDocs.convert('docx', {
             File: inputPath,
@@ -21,19 +23,17 @@ async function convertDocx(inputPath) {
             StoreFile: 'false',
         });
 
-        await result.saveFiles(outputPath);
-        console.log("Conversion successful. Excel file saved at:", outputPath);
-        return outputPath;
+        await result.saveFiles(tempFilePath);
+        return tempFilePath;
     } catch (error) {
-        console.log('Error converting PDF to Docs:', error);
         return null;
     }
 }
 
 // Main Function
-async function mainDocx(inputPDFPath, outputDir) {
+async function mainDocx(inputPDFPath) {
     try {
-        const docxPath = await convertDocx(inputPDFPath, outputDir);
+        const docxPath = await convertDocx(inputPDFPath);
         if (docxPath) {
             console.log("Conversion successful. Docs file saved at:", docxPath);
             return docxPath;

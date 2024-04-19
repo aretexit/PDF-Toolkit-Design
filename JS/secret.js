@@ -2,7 +2,7 @@
 const { MongoClient } = require('mongodb');
 const { v4: uuidv4 } = require('uuid'); 
 
-const uri = "mongodb+srv://grmblnc:zWIS4BSBo53OTjHu@mongodb.isywpds.mongodb.net/?retryWrites=true&w=majority&appName=MongoDB";
+const uri = "mongodb+srv://aretexIT:iFaYfNi3L4sOGegR@aretex.i5ddvp5.mongodb.net/pdfToolkitDB";
 
 const user_input = document.getElementById('user_input');
 let computerId = localStorage.getItem('computerId'); 
