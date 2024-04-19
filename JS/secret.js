@@ -109,6 +109,7 @@ btnsub.addEventListener('click', async () => {
             console.log("API key updated in user_secretkey collection:", updateResult.upsertedId || "No new document inserted");
 
             apiKey = result.db_secretkey;
+            location.reload();
         } else {    
             console.log("Secret key not found.");
             Swal.fire({
