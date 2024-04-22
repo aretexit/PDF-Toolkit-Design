@@ -17,8 +17,8 @@
 <body>
     <!-----------------------------NAVIGATION BAR--------------------------------------------->
     <div class="nav">
-        <a class="icons" onclick="homeIn()"><i class="fa-solid fa-house"></i></a>
-        <a class="icons" onclick="popAuth()"><i class="fa-solid fa-gear"></i></a>
+        <a class="icons" onclick="homeIn()"><i class="fa-solid fa-house house" style="color: #EF8B16;"></i></a>
+        <a class="icons" onclick="popAuth()"><i class="fa-solid fa-gear gear"></i></a>
     </div>
     <!----------------------------------------------------------------------------------------->
     <div class="whole-content" style="display: none;">
@@ -116,11 +116,11 @@
         </h2>
         <label class="lbldesc">
             Easily convert your HTML<br>
-            file URL into PDF file.
+            file into PDF file.
             <br><br>
             <label class="lbladd" style="display: none; background-color: transparent;">
                 Select HTML file<br>
-                or URL.
+                to be converted.
             </label>
             <br>
             <br>
@@ -305,16 +305,20 @@
             document.getElementById('auth').classList.remove('popout');
             document.getElementById('auth').style.display = 'block';
             document.querySelector('.gear').style.color = '#EF8B16'
+            document.querySelector('.house').style.color = 'white';
         }
 
         function authOut() {
             document.getElementById('auth').classList.add('popout');
             document.getElementById('auth').classList.remove('popup');
             document.querySelector('.gear').style.color = 'white';
+            document.querySelector('.house').style.color = '#EF8B16'
         }
 
         function homeIn() {
             document.getElementById('auth').classList.add('popout');
+            document.querySelector('.gear').style.color = 'white';
+            document.querySelector('.house').style.color = '#EF8B16'
         }
     </script>
 
