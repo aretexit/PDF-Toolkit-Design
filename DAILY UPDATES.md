@@ -170,3 +170,11 @@ Daily Update:
   - Released latest installer to github.
   - Sent Documentation of the PDF-Toolkit.
   - Added flowchart for the html to pdf functionality.
+    
+○ `04/22/2024`
+  - Waiting for update
+  - Testing the app for possible bugs
+  - Fixed Design bug (gear icon).
+  - Fixed gear and house icon to have a different color when clicked
+  - Compaired electron js and tauri
+  - Stopped trying Tauri because of its complexity.
