@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         } else {
             loadingSpinner2.style.display = 'block';
+            btnsub.style.display = 'block';
             Swal.fire({
                 title: 'No API key detected!',
                 text: 'Please enter your API key to access the application.',
