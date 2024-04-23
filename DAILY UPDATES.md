@@ -178,3 +178,13 @@ Daily Update:
   - Fixed gear and house icon to have a different color when clicked
   - Compaired electron js and tauri
   - Stopped trying Tauri because of its complexity.
+
+○ `04/23/2024`
+  - Waiting for update.
+  - Finalized video for PDF-Toolkit.
+  - Fixed include formatting checkbox when file is removed.
+  - Fixed include formatting checkbox info prompt.
+  - Rebuilt the app.
+  - Released app on github.
+  - Developed a code that converts image to pdf using OCR(Semi-Accurate).
+  
