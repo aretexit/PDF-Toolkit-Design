@@ -378,6 +378,7 @@ document.getElementById("selected-file-info-excel").addEventListener("click", fu
             document.getElementById("toggle").style.display = "none";
             document.getElementById("file-select-excelbtn").style.display = "block";
             document.getElementById("file-input-excel").value = "";
+            document.getElementById("_checkbox-26").checked = false;
         }
     }
 });
