@@ -1,12 +1,13 @@
 {
-  "name": "pdf-toolkit-design",
-  "version": "1.0.0",
-  "description": "This is the design of the PDF-Toolkit",
+  "name": "aretex-pdf-toolkit",
+  "version": "2.0.0",
+  "description": "This toolkit provides powerful PDF manipulation capabilities, enabling seamless conversion, editing, and generation of PDF documents.",
   "main": "./MainWindow/main.js",
   "scripts": {
     "start": "electron ."
   },
-  "author": "Gerome Blanco",
+  "author": "aretex IT",
+  "owner" : "aretex inc Philippines",
   "license": "ISC",
   "devDependencies": {
     "electron": "^29.1.6",
