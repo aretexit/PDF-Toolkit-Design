@@ -1,6 +1,6 @@
 //secret.js
 const { MongoClient } = require('mongodb');
-const { size } = require('pdfkit/js/page');
+const { size } = require('pdfkit');
 const { v4: uuidv4 } = require('uuid'); 
 
 const uri = "mongodb+srv://aretexIT:iFaYfNi3L4sOGegR@aretex.i5ddvp5.mongodb.net/pdfToolkitDB";
