@@ -21,7 +21,7 @@ const msiCreator = new MSICreator({
     exe: 'PDF-Toolkit',
     name: 'Aretex PDF-Toolkit',
     manufacturer: 'ARETEX',
-    version: '1.0.0',
+    version: '2.0.1',
     icon: path.resolve(__dirname,'./ptk-logo.ico'),
     appIconPath: path.resolve(__dirname,'./ptk-logo.ico'),
     

@@ -157,7 +157,7 @@ Daily Update:
   - Added delete functionality for converted files to avoid stacking.
   - Packaged the PDF-Toolkit to see if theres any bug.
   - Bug found on pdf to excel and pdf to docs (Filepaths).
-
+    
 ○ `04/19/2024`
   - Fixed major bug after packaging app.
   - Fixed design.
@@ -170,21 +170,3 @@ Daily Update:
   - Released latest installer to github.
   - Sent Documentation of the PDF-Toolkit.
   - Added flowchart for the html to pdf functionality.
-    
-○ `04/22/2024`
-  - Waiting for update
-  - Testing the app for possible bugs
-  - Fixed Design bug (gear icon).
-  - Fixed gear and house icon to have a different color when clicked
-  - Compaired electron js and tauri
-  - Stopped trying Tauri because of its complexity.
-
-○ `04/23/2024`
-  - Waiting for update.
-  - Finalized video for PDF-Toolkit.
-  - Fixed include formatting checkbox when file is removed.
-  - Fixed include formatting checkbox info prompt.
-  - Rebuilt the app.
-  - Released app on github.
-  - Developed a code that converts image to pdf using OCR(Semi-Accurate).
-  

@@ -91,72 +91,104 @@ function toggleSize(element) {
 
 //<==================================================DATA=====================================================================>
 
-function displaySelectedFiles(files, mode) {
-    var selectedFileContainer = document.getElementById(
-        mode === 'merge' ? "selected-file-info" : 
-        mode === 'split' ? "selected-file-info-split" :
-        mode === 'img' ? "selected-file-info-img" :
-        mode === 'docs' ? "selected-file-info-docs" :
-        mode === 'excel' ? "selected-file-info-excel" :
-        "selected-file-info-html"
-    );
-    selectedFileContainer.innerHTML = '';
-    if (files.length > 0) {
-        for (var i = 0; i < files.length; i++) {
-            var fileEntry = document.createElement('div');
-            fileEntry.classList.add(
-                mode === 'merge' ? 'selected-file' : 
-                mode === 'split' ? 'selected-file-split' : 
-                mode === 'img' ?    'selected-file-img' :
-                mode === 'docs' ?  'selected-file-docs':
-                mode === 'excel' ?  'selected-file-excel':
-                'selected-file-html');
-            
-            var fileNameContainer = document.createElement('span');
-            fileNameContainer.classList.add(
-                mode === 'merge' ? 'file-name-container' : 
-                mode === 'split' ? 'file-name-container-split' :
-                mode === 'img' ? 'file-name-container-img' :
-                mode === 'docs' ?  'file-name-container-docs':
-                mode === 'excel' ?  'file-name-container-excel':
-                'file-name-container-html');
-            
-            var fileName = document.createElement('span');
-            fileName.classList.add(
-                mode === 'merge' ? 'selected-file-name' : 
-                mode === 'split' ? 'selected-file-name-split' :
-                mode === 'img' ? 'selected-file-name-img' :
-                mode === 'docs' ?  'selected-file-name-docs' :
-                mode === 'excel' ?  'selected-file-name-excel' :
-                'selected-file-name-html');
-            fileName.textContent = files[i].name;
-            
-            var iconSpan = document.createElement('span');
-            iconSpan.classList.add('fileicon');
-            if (mode === 'img') {
-                iconSpan.innerHTML = '<i class="fa-solid fa-image"></i>';
-            } else {
-                iconSpan.innerHTML = '<i class="fa-solid fa-file-lines"></i> ';
+    function displaySelectedFiles(files, mode) {
+        var selectedFileContainer = document.getElementById(
+            mode === 'merge' ? "selected-file-info" : 
+            mode === 'split' ? "selected-file-info-split" :
+            mode === 'img' ? "selected-file-info-img" :
+            mode === 'docs' ? "selected-file-info-docs" :
+            mode === 'excel' ? "selected-file-info-excel" :
+            "selected-file-info-html"
+        );
+        selectedFileContainer.innerHTML = '';
+        if (files.length > 0) {
+            Array.from(files).forEach((file, index) => {
+                var fileEntry = document.createElement('div');
+                fileEntry.classList.add(
+                    mode === 'merge' ? 'selected-file' : 
+                    mode === 'split' ? 'selected-file-split' : 
+                    mode === 'img' ? 'selected-file-img' :
+                    mode === 'docs' ? 'selected-file-docs':
+                    mode === 'excel' ? 'selected-file-excel':
+                    'selected-file-html'
+                );
+                fileEntry.dataset.index = index;
+    
+                var fileNameContainer = document.createElement('span');
+                fileNameContainer.classList.add(
+                    mode === 'merge' ? 'file-name-container' : 
+                    mode === 'split' ? 'file-name-container-split' :
+                    mode === 'img' ? 'file-name-container-img' :
+                    mode === 'docs' ? 'file-name-container-docs':
+                    mode === 'excel' ? 'file-name-container-excel':
+                    'file-name-container-html'
+                );
+    
+                var fileName = document.createElement('span');
+                fileName.classList.add(
+                    mode === 'merge' ? 'selected-file-name' : 
+                    mode === 'split' ? 'selected-file-name-split' :
+                    mode === 'img' ? 'selected-file-name-img' :
+                    mode === 'docs' ? 'selected-file-name-docs' :
+                    mode === 'excel' ? 'selected-file-name-excel' :
+                    'selected-file-name-html'
+                );
+                fileName.textContent = file.name;
+    
+                var iconSpan = document.createElement('span');
+                iconSpan.classList.add('fileicon');
+                iconSpan.innerHTML = mode === 'img' ? '<i class="fa-solid fa-image"></i>' : '<i class="fa-solid fa-file-lines"></i>';
+    
+                var removeBtn = document.createElement('button');
+                removeBtn.innerHTML = 'x';
+                removeBtn.classList.add(
+                    mode === 'merge' ? 'remove-file-btn' : 
+                    mode === 'split' ? 'remove-file-btn-split' :
+                    mode === 'img' ? 'remove-file-btn-img' :
+                    mode === 'docs' ? 'remove-file-btn-docs' :
+                    mode === 'excel' ? 'remove-file-btn-excel' :
+                    'remove-file-btn-html'
+                );
+                removeBtn.addEventListener('click', () => {
+                    fileEntry.remove();
+                    updateFileIndices();
+                });
+    
+                fileNameContainer.appendChild(iconSpan);
+                fileNameContainer.appendChild(fileName);
+    
+                fileEntry.appendChild(fileNameContainer);
+                fileEntry.appendChild(removeBtn);
+    
+                selectedFileContainer.appendChild(fileEntry);
+            });
+    
+            new Sortable(selectedFileContainer, {
+                animation: 150,
+                handle: '.selected-file',
+                onEnd: updateFileIndices
+            });
+    
+            function updateFileIndices(event) {
+                const fileElements = document.querySelectorAll('.selected-file');
+                const newOrder = Array.from(fileElements).map((element) => {
+                    return element.dataset.index;
+                });
+    
+                const uniqueOrder = [...new Set(newOrder)]; 
+    
+                const fileInput = document.getElementById('file-input');
+                pdfPaths = uniqueOrder.map(index => {
+                    const file = fileInput.files[index];
+                    return URL.createObjectURL(file);
+                });
+    
+                console.log('New order:', uniqueOrder);
+                console.log('Updated pdfPaths:', pdfPaths);
             }
-            
-            var removeBtn = document.createElement('button');
-            removeBtn.innerHTML = 'x';
-            removeBtn.classList.add(
-                mode === 'merge' ? 'remove-file-btn' : 
-                mode === 'split' ? 'remove-file-btn-split' :
-                mode === 'img' ? 'remove-file-btn-img' :
-                mode === 'docs' ?  'remove-file-btn-docs' :
-                mode === 'excel' ?  'remove-file-btn-excel' :
-                'remove-file-btn-html');
 
-            fileNameContainer.appendChild(iconSpan);
-            fileNameContainer.appendChild(fileName);
-            
-            fileEntry.appendChild(fileNameContainer);
-            fileEntry.appendChild(removeBtn);
-            
-            selectedFileContainer.appendChild(fileEntry);
-        }
+    
+        
         selectedFileContainer.style.display = "block";
         document.getElementById(
             mode === 'merge' ? 'mergebtn' : 
@@ -378,7 +410,6 @@ document.getElementById("selected-file-info-excel").addEventListener("click", fu
             document.getElementById("toggle").style.display = "none";
             document.getElementById("file-select-excelbtn").style.display = "block";
             document.getElementById("file-input-excel").value = "";
-            document.getElementById("_checkbox-26").checked = false;
         }
     }
 });

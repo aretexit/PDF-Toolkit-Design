@@ -1,23 +1,14 @@
 const { PDFDocument } = require('pdf-lib');
 const Swal = require('sweetalert2');
 
-const pdfPaths = [];
+let pdfPaths = [];
 
 const mergebtn = document.getElementById('mergebtn');
-const files = document.getElementById('mergeFiles');
 const downloadbtn = document.getElementById('download');
 const backbtn = document.getElementById('backbtn');
 const selectbtn = document.getElementById('file-select-btn');
 
 mergebtn.addEventListener('click', async () => {
-    const pdfFilesInput = document.getElementById('file-input');
-    const pdfFiles = pdfFilesInput.files;
-
-    for (const file of pdfFiles) {
-        const filePath = URL.createObjectURL(file);
-        pdfPaths.push(filePath);
-    }
-
     try {
         await mergePdfPages(pdfPaths);
         Swal.fire({
@@ -45,7 +36,11 @@ downloadbtn.addEventListener('click', async () => {
     a.href = URL.createObjectURL(blob);
     a.download = 'Merged.pdf';
     a.click();
-    URL.revokeObjectURL(a.href); 
+    URL.revokeObjectURL(a.href);
+    downloadbtn.style.background = "gray";
+    downloadbtn.disabled = true;
+
+    pdfPaths = [];
 });
 
 backbtn.addEventListener('click', () => {
@@ -54,8 +49,11 @@ backbtn.addEventListener('click', () => {
     document.getElementById('download').style.display = 'none';
     document.getElementById('backbtn').style.display = 'none';
     document.getElementById('file-select-btn').style.display = 'block';
-})
+    downloadbtn.style.background = "#EA2929";
+    downloadbtn.disabled = false;
 
+    pdfPaths = [];
+});
 
 async function mergePdfPages(pdfPaths) {
     const mergedPdf = await PDFDocument.create();

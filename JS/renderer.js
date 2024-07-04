@@ -175,7 +175,7 @@ function toggleCode() {
         Swal.fire({
         position: "center",
         icon: "info",
-        text: "Please take note that Include Formatting only works on single sheet.",
+        title: "Please take note that Include Formatting only works on single sheet.",
         showConfirmButton: true,
         });
     } else {
