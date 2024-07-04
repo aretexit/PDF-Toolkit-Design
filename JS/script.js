@@ -29,6 +29,7 @@ function toggleSize(element) {
     target.id === "file-input-excel" ||
     target.id === "file-select-htmlbtn" || 
     target.id === "file-input-html" ||
+    target.id === "clear-all-btn" ||
     target.classList.contains("remove-file-btn") ||
     target.classList.contains("selected-file-name") ||
     target.classList.contains("selected-file") ||
@@ -153,28 +154,29 @@ function toggleSize(element) {
                     fileEntry.remove();
                     updateFileIndices();
                 });
-    
+
                 fileNameContainer.appendChild(iconSpan);
                 fileNameContainer.appendChild(fileName);
-    
+                
                 fileEntry.appendChild(fileNameContainer);
                 fileEntry.appendChild(removeBtn);
     
                 selectedFileContainer.appendChild(fileEntry);
             });
-    
+            
+
             new Sortable(selectedFileContainer, {
                 animation: 150,
                 handle: '.selected-file',
-                onEnd: updateFileIndices
+                onEnd: updateFileIndices,
             });
-    
+            updateFileIndices();
             function updateFileIndices(event) {
                 const fileElements = document.querySelectorAll('.selected-file');
                 const newOrder = Array.from(fileElements).map((element) => {
                     return element.dataset.index;
                 });
-    
+                
                 const uniqueOrder = [...new Set(newOrder)]; 
     
                 const fileInput = document.getElementById('file-input');
@@ -186,9 +188,7 @@ function toggleSize(element) {
                 console.log('New order:', uniqueOrder);
                 console.log('Updated pdfPaths:', pdfPaths);
             }
-
     
-        
         selectedFileContainer.style.display = "block";
         document.getElementById(
             mode === 'merge' ? 'mergebtn' : 
@@ -241,16 +241,20 @@ document.getElementById("file-select-btn").addEventListener("click", function() 
 document.getElementById("file-input").addEventListener("change", function(event) {
     if (event.target.files.length > 0) {
         document.getElementById("file-select-btn").style.display = "none";
+        document.getElementById("clear-all-btn").style.display = "none";
     } else {
         document.getElementById("file-select-btn").style.display = "block";
         document.getElementById("selected-file-info").style.display = "block";
         document.getElementById("mergeFiles").style.display = "block";
+        document.getElementById("clear-all-btn").style.display = "block";
     }
     displaySelectedFiles(event.target.files, 'merge');
+    document.getElementById("clear-all-btn").style.display = "block";
 });
    
 
 document.getElementById("selected-file-info").addEventListener("click", function(event) {
+    
     if (event.target.classList.contains("remove-file-btn")) {
         var fileEntry = event.target.parentElement;
         fileEntry.remove();
@@ -260,6 +264,7 @@ document.getElementById("selected-file-info").addEventListener("click", function
             document.getElementById("mergebtn").style.display = "none";
             document.getElementById("file-select-btn").style.display = "block";
             document.getElementById("file-input").value = "";
+            document.getElementById("clear-all-btn").style.display = "none";
         }
     }
 });

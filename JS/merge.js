@@ -21,6 +21,7 @@ mergebtn.addEventListener('click', async () => {
 
         mergebtn.style.display = 'none';
         document.getElementById('selected-file-info').style.display = 'none';
+        document.getElementById("clear-all-btn").style.display = "none";
         downloadbtn.style.display = 'block';
         backbtn.style.display = 'block';
     } catch (error) {
@@ -39,6 +40,21 @@ downloadbtn.addEventListener('click', async () => {
     URL.revokeObjectURL(a.href);
     downloadbtn.style.background = "gray";
     downloadbtn.disabled = true;
+    document.getElementById("clear-all-btn").style.display = "none";
+
+    pdfPaths = [];
+});
+
+document.getElementById('clear-all-btn').addEventListener('click', () => {
+    document.getElementById("file-input").value = "";
+    document.getElementById("clear-all-btn").style.display = "none";
+    document.getElementById("selected-file-info").innerHTML = "";
+    document.getElementById('download').style.display = 'none';
+    document.getElementById('backbtn').style.display = 'none';
+    document.getElementById('file-select-btn').style.display = 'block';
+    document.getElementById('mergebtn').style.display = "none"
+    downloadbtn.style.background = "#EA2929";
+    downloadbtn.disabled = false;
 
     pdfPaths = [];
 });
@@ -51,6 +67,7 @@ backbtn.addEventListener('click', () => {
     document.getElementById('file-select-btn').style.display = 'block';
     downloadbtn.style.background = "#EA2929";
     downloadbtn.disabled = false;
+    document.getElementById("clear-all-btn").style.display = "none";
 
     pdfPaths = [];
 });
