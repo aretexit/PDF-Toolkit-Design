@@ -155,7 +155,6 @@ function toggleSize(element) {
                     updateFileIndices();
                 });
 
-
                 fileNameContainer.appendChild(iconSpan);
                 fileNameContainer.appendChild(fileName);
                 
@@ -189,9 +188,7 @@ function toggleSize(element) {
                 console.log('New order:', uniqueOrder);
                 console.log('Updated pdfPaths:', pdfPaths);
             }
-
     
-        
         selectedFileContainer.style.display = "block";
         document.getElementById(
             mode === 'merge' ? 'mergebtn' : 
