@@ -486,3 +486,20 @@ body {
 .lblIF {
     margin-left: -5.5rem;
 }
+
+.clearallbtn {
+    position: absolute;
+    padding: 8px 10px;
+    gap: 4px;
+    margin: 0 auto;
+    width: 71px;
+    height: 29px;
+    background: rgb(0, 0, 0);
+    border-radius: 8px;
+    border-style: none;
+    margin-left: -0.9rem;
+    margin-top: 11.1rem;
+    color: white;
+    cursor: pointer;
+    z-index: 9999;
+}
