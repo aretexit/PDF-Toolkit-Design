@@ -168,7 +168,7 @@ function toggleSize(element) {
                 handle: '.selected-file',
                 onEnd: updateFileIndices
             });
-    
+            updateFileIndices();
             function updateFileIndices(event) {
                 const fileElements = document.querySelectorAll('.selected-file');
                 const newOrder = Array.from(fileElements).map((element) => {
@@ -245,6 +245,7 @@ document.getElementById("file-input").addEventListener("change", function(event)
         document.getElementById("file-select-btn").style.display = "block";
         document.getElementById("selected-file-info").style.display = "block";
         document.getElementById("mergeFiles").style.display = "block";
+        
     }
     displaySelectedFiles(event.target.files, 'merge');
 });
