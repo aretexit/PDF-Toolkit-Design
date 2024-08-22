@@ -6,8 +6,10 @@ const excel3 = require('../JS/toggle')
 const docx = require('../JS/docs')
 const fs = require('fs');
 
-function createWindow () {
-  const win = new BrowserWindow({
+let mainWindow;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     autoHideMenuBar: true,
@@ -19,26 +21,51 @@ function createWindow () {
       preload: path.join(__dirname, 'preload.js')
     },
     visibleOnAllWorkspaces: true,
-  })
-  win.maximize()
-  win.loadFile('./HTML/index.html')
+  });
+
+  mainWindow.maximize();
+  mainWindow.loadFile('./HTML/index.html');
+
+  mainWindow.on('close', (event) => {
+    if (!mainWindow.isDestroyed()) {
+      
+      const choice = dialog.showMessageBoxSync(mainWindow, {
+        type: 'question',
+        buttons: ['Yes, exit', 'Cancel'],
+        defaultId: 1,
+        title: 'Confirm',
+        message: 'Do you want to exit the application?',
+      });
+      
+
+      if (choice === 0) {
+        mainWindow.destroy(); 
+      } else {
+        event.preventDefault();
+      }
+    }
+  });
+
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
 }
 
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
+      createWindow();
     }
-  })
-})
+  });
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
-})
+});
 
 //<=========================================PDF2EXCEL====================================================>
 

@@ -17,8 +17,8 @@
 <body>
     <!-----------------------------NAVIGATION BAR--------------------------------------------->
     <div class="nav">
-        <a class="icons" onclick="homeIn()"><i class="fa-solid fa-house home"></i></a>
-        <a class="icons" onclick="popAuth()"><i class="fa-solid fa-gear gear"></i></a>
+        <a style="display: none;" class="icons" onclick="homeIn()"><i class="fa-solid fa-house home"></i></a>
+        <a style="display: none;" class="icons" onclick="popAuth()"><i class="fa-solid fa-gear gear"></i></a>
     </div>
     <!----------------------------------------------------------------------------------------->
     <div class="whole-content" style="display: none;">
@@ -52,10 +52,14 @@
         </div>
         <button id="file-select-btn" class="btnselect" style="display: none;">Select PDF files</button>
         <input type="file" id="file-input" style="display: none;" name="files[]" accept=".pdf" multiple required>
+        
         <div class="files-container" id="mergeFiles">
+
         <div id="selected-file-info" style="display: none;" class="test">
+            
         </div>
         </div>
+        <button id="clear-all-btn" class="clearallbtn" style="display: none;">Clear All</button>
         <button style="display: none;" class="mergebtn" id="mergebtn">Merge PDF <i class="fa-solid fa-arrow-right"></i></button>
         <button style="display: none;" class="download" id="download"><i class="fa-solid fa-download"></i> Download PDF</i></button>
         <br>
@@ -278,9 +282,9 @@
     </div>
     </div>
 </div>
-<div class="loader-container">
+<!--<div class="loader-container">
     <span class="loader" style="display: block;" id="loadersecret2"></span>
-</div>
+</div>-->
     <!-------------------------------------------------------------------------------------------->
 
     <!-----------------------------------------SECRET--------------------------------------------->
@@ -289,7 +293,7 @@
         <span class="loader" style="display: none;" id="loadersecret"></span>
         <div class="input-container">
             <label class="lblapi">API Key</label><br>
-            <input type="text" placeholder="Enter API Key" class="txtkey" id="user_input" disabled required>
+            <input type="password" placeholder="Enter API Key" class="txtkey" id="user_input" disabled required>
             <i class="fa-solid fa-pencil" onclick="editKey()"></i> 
             <i class="fa-solid fa-trash" onclick="deleteKey()"></i><br>
             <input type="button" value="Submit" class="btnsub" id="btnsub" style="display: none;"> <br>
