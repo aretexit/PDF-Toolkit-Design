@@ -353,7 +353,7 @@ body {
     margin-top: 20px;
 }
 
-.mergebtn, 
+
 .splitbtn, 
 .imgbtn,
 .htmlbtn,
@@ -367,6 +367,21 @@ body {
     border-radius: 8px;
     border-style: none;
     margin-left: -12.5rem;
+    margin-top: 12rem;
+    color: white;
+    cursor: pointer;
+}
+
+.mergebtn {
+    padding: 8px 10px;
+    gap: 4px;
+    margin: 0 auto;
+    width: 160px;
+    height: 40px;
+    background: #EA2929;
+    border-radius: 8px;
+    border-style: none;
+    margin-left: -2.5rem;
     margin-top: 12rem;
     color: white;
     cursor: pointer;
@@ -488,7 +503,6 @@ body {
 }
 
 .clearallbtn {
-    position: absolute;
     padding: 8px 10px;
     gap: 4px;
     margin: 0 auto;
@@ -497,9 +511,9 @@ body {
     background: rgb(0, 0, 0);
     border-radius: 8px;
     border-style: none;
-    margin-left: -0.9rem;
-    margin-top: 11.1rem;
+    margin-left: -17rem;
+    margin-top: 12.5rem;
     color: white;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 1;
 }
