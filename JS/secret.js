@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require('uuid'); 
 
-const HARD_CODED_API_KEY = "kzM40Xj5zlJlaUoo"; 
+const HARD_CODED_API_KEY = "API_KEY"; 
 
 const user_input = document.getElementById('user_input');
 let computerId = localStorage.getItem('computerId'); 
