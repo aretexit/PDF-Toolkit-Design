@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "convertapi": "^1.14.0",
-    "convertapi-js": "^1.0.8",
+    "convertapi-js": "^1.1.8",
     "electron-packager": "^17.1.2",
     "image-size": "^1.1.1",
     "mongodb": "^6.5.0",
